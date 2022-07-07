@@ -8,6 +8,7 @@ export default function MyListContainer() {
       <Container>
         <Description>
           <Title>MyList</Title>
+          <More>더 보기</More>
         </Description>
         <MyList />
       </Container>
@@ -42,9 +43,13 @@ const Container = styled.div`
 `;
 const Description = styled.div`
   width: 100%;
-  padding: 30px;
   background-color: #eaeaea;
+  padding: 30px;
+  box-sizing: border-box;
+
   margin: auto;
+  display: flex;
+  justify-content: space-between;
 `;
 const Title = styled.div`
   --font-size: 18px;
@@ -54,6 +59,11 @@ const Title = styled.div`
   width: 300px;
   font-size: var(--font-size);
   font-weight: var(--font-weight);
+  color: white;
+  background-color: green;
+`;
+const More = styled.div`
+  width: 200px;
   color: white;
   background-color: green;
 `;
