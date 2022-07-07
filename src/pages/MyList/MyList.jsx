@@ -7,7 +7,6 @@ export default function MyList() {
   useEffect(() => {});
   return (
     <>
-      <h1>여기는 MyList</h1>
       <Container>
         <MyListMovie
           poster={
@@ -54,10 +53,10 @@ export default function MyList() {
   );
 }
 const Container = styled.div`
-  background-color: royalblue;
+  background-color: #eaeaea;
   margin: auto;
   display: flex;
   flex-wrap: wrap; // 줄 바꿈의 수평처리
   justify-content: center; // 수평 가운데 정렬;
-  width: 80%;
+  /* width: 90%; */
 `;
