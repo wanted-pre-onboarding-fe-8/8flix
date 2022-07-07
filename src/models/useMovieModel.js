@@ -1,4 +1,5 @@
 import React from "react";
+
 import { movieRequest } from "../services/movieService";
 
 export const useMovieModel = () => {
