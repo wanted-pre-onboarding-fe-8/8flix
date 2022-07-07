@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { useMovieModel } from '../../models/useMovieModel';
 import styled from 'styled-components';
+import { theme } from '../../utils/constants/theme';
 
 export default function Main() {
   const { movies, getMovies } = useMovieModel();
@@ -30,13 +31,13 @@ const MovieSection = styled.section`
   grid-gap: 1rem;
   margin-top: 1rem;
   padding: 0 1rem;
-  @media screen and (min-width: 1024px) {
+  @media ${theme.media.desktop} {
     grid-template-columns: repeat(5, 1fr);
   }
-  @media screen and (min-width: 768px) and (max-width: 1023px) {
+  @media ${theme.deviceSize.tablet} {
     grid-template-columns: repeat(3, 1fr);
   }
-  @media screen and (max-width: 767px) {
+  @media ${theme.deviceSize.mobile} {
     grid-template-columns: repeat(1, 1fr);
   }
 `;
