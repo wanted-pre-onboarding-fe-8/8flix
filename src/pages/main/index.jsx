@@ -1,7 +1,7 @@
-import React, { useEffect } from 'react';
-import { useMovieModel } from '../../models/useMovieModel';
-import styled from 'styled-components';
-import { theme } from '../../utils/constants/theme';
+import React, { useEffect } from "react";
+import { useMovieModel } from "../../models/useMovieModel";
+import styled from "styled-components";
+import { theme } from "../../utils/constants/theme";
 
 export default function Main() {
   const { movies, getMovies } = useMovieModel();
@@ -14,7 +14,7 @@ export default function Main() {
     <Container>
       <Title>Main</Title>
       <MovieSection>
-        {movies.map(({ id, type, year, title, poster }) => {
+        {movies?.map(({ id, type, year, title, poster }) => {
           return <li key={id}>{title}</li>;
         })}
       </MovieSection>
