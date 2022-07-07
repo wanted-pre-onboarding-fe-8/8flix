@@ -31,7 +31,7 @@ const MovieSection = styled.section`
   grid-gap: 1rem;
   margin-top: 1rem;
   padding: 0 1rem;
-  @media ${theme.media.desktop} {
+  @media ${theme.deviceSize.desktop} {
     grid-template-columns: repeat(5, 1fr);
   }
   @media ${theme.deviceSize.tablet} {
