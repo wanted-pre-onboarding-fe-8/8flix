@@ -20,7 +20,8 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "server": "json-server --watch ./src/database/database.json --port 8000"
+    "server": "json-server --watch ./src/database/database.json --port 8000",
+    "lint": "eslint --ext .js,.jsx,.ts,.tsx ./src"
   },
   "eslintConfig": {
     "extends": [

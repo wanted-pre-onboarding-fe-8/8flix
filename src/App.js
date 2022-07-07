@@ -1,5 +1,6 @@
-import GNB from "./components/GNB";
-import Router from "./Router";
+import React from 'react';
+import GNB from './components/GNB';
+import Router from './Router';
 
 function App() {
   return (

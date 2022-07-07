@@ -1,8 +1,8 @@
-import React, { useEffect } from "react";
-import { useMovieModel } from "../../models/useMovieModel";
-import styled from "styled-components";
-import { theme } from "../../utils/constants/theme";
-import Card from "../../components/Card";
+import React, { useEffect } from 'react';
+import { useMovieModel } from '../../models/useMovieModel';
+import styled from 'styled-components';
+import { theme } from '../../utils/constants/theme';
+import Card from '../../components/Card';
 
 export default function Main() {
   const { movies, getMovies } = useMovieModel();

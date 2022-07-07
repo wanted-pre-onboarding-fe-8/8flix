@@ -1,6 +1,6 @@
-import React from "react";
+import React from 'react';
 
-import { movieRequest } from "../services/movieService";
+import { movieRequest } from '../services/movieService';
 
 export const useMovieModel = () => {
   const [movies, setMovies] = React.useState(null);
@@ -10,7 +10,7 @@ export const useMovieModel = () => {
   };
 
   const getMovies = () => {
-    movieRequest.get("", getMoviesCallback);
+    movieRequest.get('', getMoviesCallback);
   };
 
   const patchMovieById = async (id, data) => {
