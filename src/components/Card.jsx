@@ -1,23 +1,13 @@
-import React from 'react';
-import styled from 'styled-components';
+import React from "react";
+import styled from "styled-components";
 
-export default function Card(/*{card}*/) {
-  const card = {
-    title: 'You Are the Apple of My Eye',
-    year: '2011',
-    id: 'tt2036416',
-    type: 'movie',
-    poster:
-      'https://m.media-amazon.com/images/M/MV5BMWU2OTAyMTktMTU5MC00MTNhLTg1NzAtOTZjNWFjMDRiZGUxXkEyXkFqcGdeQXVyNDY3MzUxOTI@._V1_SX300.jpg',
-    like: false,
-  };
-
+export default function Card({ movie }) {
   return (
     <CardWrapper>
       <Figure>
-        <Image src={card.poster} alt={card.title} />
+        <Image src={movie.poster} alt={movie.title} />
       </Figure>
-      <Title>{card.title}</Title>
+      <Title>{movie.title}</Title>
     </CardWrapper>
   );
 }

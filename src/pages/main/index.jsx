@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { useMovieModel } from "../../models/useMovieModel";
 import styled from "styled-components";
 import { theme } from "../../utils/constants/theme";
+import Card from "../../components/Card";
 
 export default function Main() {
   const { movies, getMovies } = useMovieModel();
@@ -14,8 +15,8 @@ export default function Main() {
     <Container>
       <Title>Main</Title>
       <MovieSection>
-        {movies?.map(({ id, type, year, title, poster }) => {
-          return <li key={id}>{title}</li>;
+        {movies?.map((movie) => {
+          return <Card key={movie.id} movie={movie} />;
         })}
       </MovieSection>
     </Container>
