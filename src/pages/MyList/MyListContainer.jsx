@@ -5,8 +5,10 @@ import MyList from "./MyList";
 export default function MyListContainer() {
   return (
     <>
-      <h1>여기는 MyListContainer</h1>
       <Container>
+        <Description>
+          <Title>MyList</Title>
+        </Description>
         <MyList />
       </Container>
     </>
@@ -37,4 +39,21 @@ const Container = styled.div`
   }
   @media (max-width: 2560px) {
   }
+`;
+const Description = styled.div`
+  width: 100%;
+  padding: 30px;
+  background-color: #eaeaea;
+  margin: auto;
+`;
+const Title = styled.div`
+  --font-size: 18px;
+  --font-weight: 700;
+
+  display: block;
+  width: 300px;
+  font-size: var(--font-size);
+  font-weight: var(--font-weight);
+  color: white;
+  background-color: green;
 `;
