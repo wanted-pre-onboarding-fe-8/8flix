@@ -8,6 +8,7 @@ export default function Router() {
     <Routes>
       <Route path="/" element={<Main />}></Route>
       <Route path="/my-list" element={<MyList />}></Route>
+      <Route path="/*" element={<div>page가 없습니다.</div>}></Route>
     </Routes>
   );
 }
