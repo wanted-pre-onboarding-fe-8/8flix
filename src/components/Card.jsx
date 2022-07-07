@@ -14,14 +14,38 @@ export default function Card(/*{card}*/) {
 
   return (
     <CardWrapper>
-      <Image src={card.poster} alt={card.title} />
+      <Figure>
+        <Image src={card.poster} alt={card.title} />
+      </Figure>
       <Title>{card.title}</Title>
     </CardWrapper>
   );
 }
 
-const CardWrapper = styled.div``;
+const CardWrapper = styled.div`
+  margin-right: 1rem;
+  width: 240px;
+`;
 
-const Image = styled.img``;
+const Figure = styled.figure`
+  margin: 0;
+  overflow: hidden;
+`;
 
-const Title = styled.p``;
+const Image = styled.img`
+  display: block;
+  width: 100%;
+  transition: 200ms;
+
+  &:hover {
+    cursor: pointer;
+    transform: scale(1.05);
+  }
+`;
+
+const Title = styled.p`
+  margin: 0;
+  margin-top: 6px;
+  font-size: 14px;
+  color: gray;
+`;
