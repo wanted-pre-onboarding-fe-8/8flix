@@ -5,7 +5,7 @@ export default function Card({ movie }) {
   return (
     <CardWrapper>
       <Figure>
-        <Image src={movie.poster} alt={movie.title} />
+        <Image src={movie.large_cover_image} alt={movie.title} />
       </Figure>
       <Title>{movie.title}</Title>
     </CardWrapper>
