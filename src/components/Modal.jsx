@@ -1,5 +1,5 @@
-import { useState } from "react";
-import styled, { keyframes } from "styled-components";
+import React, { useState } from 'react';
+import styled, { keyframes } from 'styled-components';
 
 export function useModal(duration) {
   const [isOpen, setIsOpen] = useState(false);
@@ -21,7 +21,11 @@ export function Modal({ isOpen, isFadeIn, duration, closeModal, children }) {
   return (
     <>
       {isOpen && (
-        <Overlay isFadeIn={isFadeIn} duration={duration} closeModal={closeModal}>
+        <Overlay
+          isFadeIn={isFadeIn}
+          duration={duration}
+          closeModal={closeModal}
+        >
           {children}
         </Overlay>
       )}

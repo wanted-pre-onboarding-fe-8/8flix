@@ -1,6 +1,6 @@
-import React from "react";
-import { useNavigate, Link as RouterLink } from "react-router-dom";
-import styled from "styled-components";
+import React from 'react';
+import { useNavigate, Link as RouterLink } from 'react-router-dom';
+import styled from 'styled-components';
 
 export default function GNB() {
   const navigate = useNavigate();
@@ -11,12 +11,12 @@ export default function GNB() {
           <Logo
             to="/"
             src="https://wfiot2018.iot.ieee.org/files/2016/01/sample-logo@2x.png"
-            onClick={() => navigate("/")}
+            onClick={() => navigate('/')}
           />
         </Section>
         <SearchBar
           placeholder="🔍 영화 검색"
-          onKeyDown={(e) => console.log("검색어 처리")}
+          onKeyDown={(e) => console.log('검색어 처리')}
         />
         <Section>
           <TabLink to="my-list">즐겨찾기</TabLink>
