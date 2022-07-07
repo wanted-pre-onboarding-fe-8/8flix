@@ -1,5 +1,13 @@
+import GNB from "./components/GNB";
+import Router from "./Router";
+
 function App() {
-  return <div>8flix</div>;
+  return (
+    <>
+      <GNB />
+      <Router />
+    </>
+  );
 }
 
 export default App;
