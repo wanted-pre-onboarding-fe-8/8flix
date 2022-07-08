@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { theme } from '../../utils/constants/theme';
-import { cutString, getTimeStringByMinute } from '../../utils/helpers/helper';
+import { cutString, getTimeStringByMinute } from '../../utils/helpers';
 
 export default function Detail({ movie }) {
   const genres = movie.genres.slice(0, 3).join(', ');
