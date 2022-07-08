@@ -2,9 +2,12 @@ import React from 'react';
 import { useNavigate, Link as RouterLink } from 'react-router-dom';
 import styled from 'styled-components';
 import { theme } from '../utils/constants/theme';
+import { useRecoilState } from 'recoil';
+import { keywordState } from '../recoil';
 
 export default function GNB() {
   const navigate = useNavigate();
+  const keyword = useRecoilState(keywordState);
 
   const handleSubmit = (event) => {
     /*검색 처리*/
