@@ -22,7 +22,9 @@ export default function Main() {
   });
 
   useEffect(() => {
-    searchMovies(keyword);
+    if (keyword !== '') {
+      searchMovies(keyword);
+    }
   }, [keyword]);
 
   const handleCardClick = (movieId) => {
@@ -35,6 +37,8 @@ export default function Main() {
     patchMovieById(movieId, { like: !movieLike }).then(getMovies);
   };
 
+  if (movies === null)
+    return <EmptyContainer>영화 검색을 해주세요.</EmptyContainer>;
   return (
     <>
       <Container>
@@ -70,6 +74,16 @@ export default function Main() {
     </>
   );
 }
+
+const EmptyContainer = styled.div`
+  width: 100vw;
+  height: 90vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 60px;
+  font-weight: 600;
+`;
 
 const Container = styled.main``;
 const MovieSection = styled.section`
