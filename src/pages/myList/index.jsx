@@ -12,45 +12,37 @@ export default function Main() {
   const { movies, getMovies, searchLikedMovies, patchMovieById } =
     useMovieModel();
   const keyword = useRecoilValue(keywordState);
-
   const [selectedMovie, setSelectedMovie] = useState(null);
   const duration = 500;
   const { isOpen, isFadeIn, openModal, closeModal } = useModal(duration);
-
-  const onClickCallback = (id, data) => {
-    patchMovieById(id, data).then(getMovies);
-  };
-  const onClickDelete = (id, data) => {
-    onClickCallback(id, data);
-  };
-  useEffect(() => {
-    searchLikedMovies();
-  }, []);
 
   const handleCardClick = (movieId) => {
     const [movie] = movies.filter((movie) => movie.id === movieId);
     setSelectedMovie(movie);
     openModal();
   };
-
   const handleLikeClick = (movieId, movieLike) => {
-    patchMovieById(movieId, { like: !movieLike }).then(searchLikedMovies);
+    patchMovieById(movieId, { like: !movieLike }).then(
+      searchLikedMovies(keyword)
+    );
   };
+  useEffect(() => {
+    console.log('render 시작');
+    searchLikedMovies(keyword);
+    console.log('render 끝');
+  }, [keyword]);
 
   return (
     <Container>
       <MovieSection>
         {movies?.map((movie) => {
           return (
-            movie.like && (
-              <MyListCard
-                key={movie.id}
-                movie={movie}
-                onDelete={() => onClickDelete(movie.id, { like: false })}
-                handleCardClick={handleCardClick}
-                handleLikeClick={handleLikeClick}
-              />
-            )
+            <MyListCard
+              key={movie.id}
+              movie={movie}
+              handleCardClick={handleCardClick}
+              handleLikeClick={handleLikeClick}
+            />
           );
         })}
       </MovieSection>

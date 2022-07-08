@@ -9,20 +9,17 @@ export const useMovieModel = () => {
   const getMoviesCallback = (response) => {
     setMovies(response.data);
   };
-
   const getMovies = () => {
     movieRequest.get('', getMoviesCallback);
   };
-
   const patchMovieById = async (id, data) => {
     movieRequest.patch(id, data);
   };
-
   const searchMovies = async (word) => {
     movieRequest.get(`?q=${word}`, getMoviesCallback);
   };
-  const searchLikedMovies = async () => {
-    movieRequest.get('?like=true', getMoviesCallback);
+  const searchLikedMovies = async (id) => {
+    movieRequest.get(`?like=true&q=${id}`, getMoviesCallback);
   };
 
   const getMoviesByListsCallback = (response) => {
