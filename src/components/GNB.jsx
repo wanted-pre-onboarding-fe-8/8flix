@@ -7,11 +7,17 @@ import { keywordState } from '../recoil';
 
 export default function GNB() {
   const navigate = useNavigate();
-  const keyword = useRecoilState(keywordState);
+  const [keyword, setKeyword] = useRecoilState(keywordState);
 
   const handleSubmit = (event) => {
-    /*검색 처리*/
     event.preventDefault();
+    const [input] = event.target.elements;
+    setKeyword(input.value);
+  };
+
+  const handleChange = (event) => {
+    const { value } = event.target;
+    setKeyword(value);
   };
 
   return (
@@ -27,7 +33,8 @@ export default function GNB() {
         <SearchBar onSubmit={handleSubmit}>
           <input
             placeholder="🔍 영화 검색"
-            onChange={(event) => console.log(event)}
+            onChange={handleChange}
+            value={keyword}
           />
         </SearchBar>
         <Section>
