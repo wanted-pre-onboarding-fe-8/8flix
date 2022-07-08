@@ -52,6 +52,7 @@ const Wrapper = styled.nav`
   position: sticky;
   top: 0;
   min-width: 320px;
+  z-index: 1;
 `;
 
 const Navigation = styled.div`
