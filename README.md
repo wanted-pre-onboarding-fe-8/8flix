@@ -1,70 +1,72 @@
-# Getting Started with Create React App
+# 원티드 프리온보딩 프론트엔드 1주차 과제 2 - 영화 정보 사이트
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## 동작
 
-## Available Scripts
+## 역할
 
-In the project directory, you can run:
+|  이름  |            역할             |
+| :----: | :-------------------------: |
+| 엄일경 |    메인페이지, 검색기능     |
+| 임은지 |       검색 추천 기능        |
+| 이진희 |  GNB, 검색 전역 상태 관리   |
+| 오태권 |      마이리스트페이지       |
+| 문성운 | 상세페이지(Modal) 기능 구현 |
+| 추연빈 |   즐겨찾기 페이지 카드 UI   |
 
-### `npm start`
+## 폴더 구조
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+```bash
+├── src
+│   ├── components
+│   │     ├── Card.jsx
+│   │     ├── GNB.jsx
+│   │     └── Modal.jsx
+│   ├── database
+│   │     └── database.json
+│   ├── hooks
+│   │     └── useInterceptionObserver.js
+│   ├── pages
+│   │     ├── detail
+│   │     │    └── index.jsx
+│   │     └── main
+│   │     │    └── index.jsx
+│   │     └── myList
+│   │          ├── index.jsx
+│   │          └── MyListCard.jsx
+│   ├── service
+│   │     └── movieService.js
+│   ├── utils
+│   │    ├── constants
+│   │    │    └── theme.js
+│   │    └── helpers
+│   │         └── index.js
+├── GlobalStyles.js
+├── App.js
+├── index.html
+├── recoil.js
+└── Router.jsx
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+```
 
-### `npm test`
+## 구현
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### 검색
 
-### `npm run build`
+- [x] Global 네비게이션 바로 검색창 기능 구현
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### 영화 선택
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- [x] 첫 화면에 영화 데이터 출력 구현
+- [x] 검색창에 검색해서 검색한 키워드에 맞는 영화를 출력 구현
+- [x] 해당 영화 데이터를 클릭하면 상세페이지(Modal)기능 구현
+- [x] 영화의 페이지에 즐겨찾기 버튼 (🤍)를 누르면 💖로 변화 구현
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### 즐겨찾기
 
-### `npm run eject`
+- [x] 즐겨찾기 탭을 누르면 즐겨찾기 페이지로 이동 구현
+- [x] 즐겨찾기 페이지로 버튼을 누른 즐겨찾기된 영화 데이터가 출력 구현
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+## 회의록
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- [4일차 💬](https://www.notion.so/cf4d10bb3b504ab0ae08d1f4b2a53ab1?v=c1a46a3b94eb4f449c8874f9e6b5318d&p=1d0271c19cd341c79222ee33af45e0b8)
+- [5일차 💬](https://www.notion.so/cf4d10bb3b504ab0ae08d1f4b2a53ab1?v=c1a46a3b94eb4f449c8874f9e6b5318d&p=5c72054b2c194f388ceff676a4583f12)
