@@ -38,7 +38,6 @@ export default function Main() {
   return (
     <>
       <Container>
-        <Title>Main</Title>
         <MovieSection>
           {movies?.slice(0, showNum).map((movie) => {
             return (
@@ -73,9 +72,6 @@ export default function Main() {
 }
 
 const Container = styled.main``;
-const Title = styled.h1`
-  text-align: center;
-`;
 const MovieSection = styled.section`
   display: grid;
   grid-gap: 1rem;
