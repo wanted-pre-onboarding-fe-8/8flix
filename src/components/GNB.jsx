@@ -16,7 +16,8 @@ export default function GNB() {
         </Section>
         <SearchBar
           placeholder="🔍 영화 검색"
-          onKeyDown={(e) => console.log('검색어 처리')}
+          onChange={(event) => console.log('검색어 처리')}
+          onKeyDown={(event) => console.log('검색어 처리')}
         />
         <Section>
           <TabLink to="my-list">즐겨찾기</TabLink>
@@ -29,8 +30,7 @@ export default function GNB() {
 const Wrapper = styled.nav`
   background-color: black;
   width: 100vw;
-  height: 2rem;
-  padding: 12px;
+  padding: 10px;
 `;
 
 const Navigation = styled.div`
