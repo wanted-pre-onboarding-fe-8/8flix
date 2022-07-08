@@ -16,8 +16,6 @@ export default function Card({ movie, handleCardClick, handleLikeClick }) {
 }
 
 const CardWrapper = styled.div`
-  margin-right: 1rem;
-  width: 240px;
   position: relative;
 `;
 
