@@ -3,12 +3,12 @@ import { useMovieModel } from '../../models/useMovieModel';
 import styled from 'styled-components';
 import { theme } from '../../utils/constants/theme';
 import MockCard from '../../components/MockCard';
-import { useRecoilState, useRecoilValue } from 'recoil';
+import { useRecoilValue } from 'recoil';
 import { keywordState } from '../../recoil';
 
 export default function Main() {
-  const { movies, getMovies, searchMovies } = useMovieModel();
-  const [keyword] = useRecoilValue(keywordState);
+  const { movies, searchMovies } = useMovieModel();
+  const keyword = useRecoilValue(keywordState);
 
   const onClickCallback = (id, data) => {
     patchMovieById(id, data).then(getMovies);
