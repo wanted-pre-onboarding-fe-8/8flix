@@ -3,20 +3,23 @@ import { useMovieModel } from '../../models/useMovieModel';
 import styled from 'styled-components';
 import { theme } from '../../utils/constants/theme';
 import MockCard from '../../components/MockCard';
+import { useRecoilState, useRecoilValue } from 'recoil';
+import { keywordState } from '../../recoil';
 
 export default function Main() {
-  const { movies, getMovies } = useMovieModel();
+  const { movies, getMovies, searchMovies } = useMovieModel();
+  const keyword = useRecoilValue(keywordState);
+  // const keyword = 'Action';
 
   const onClickCallback = (id, data) => {
     patchMovieById(id, data).then(getMovies);
   };
-
   const onClickDelete = (id, data) => {
     onClickCallback(id, data);
   };
   useEffect(() => {
-    getMovies();
-  }, []);
+    searchMovies(keyword);
+  }, [keyword]);
 
   return (
     <Container>
@@ -24,7 +27,7 @@ export default function Main() {
       <MovieSection>
         {movies?.map((movie) => {
           return (
-            movie.like && (
+            !movie.like && (
               <MockCard
                 key={movie.id}
                 movie={movie}
