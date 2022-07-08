@@ -17,9 +17,14 @@ export const useMovieModel = () => {
     movieRequest.patch(id, data);
   };
 
+  const searchMovies = async (word) => {
+    movieRequest.get(`?q=${word}`, getMoviesCallback);
+  };
+
   return {
     movies,
     getMovies,
     patchMovieById,
+    searchMovies,
   };
 };
