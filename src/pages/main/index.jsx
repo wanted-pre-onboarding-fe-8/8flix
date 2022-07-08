@@ -39,7 +39,7 @@ export default function Main() {
     );
   };
 
-  if (movies === null)
+  if (!movies || movies.length === 0)
     return <EmptyContainer>영화 검색을 해주세요.</EmptyContainer>;
   return (
     <>
