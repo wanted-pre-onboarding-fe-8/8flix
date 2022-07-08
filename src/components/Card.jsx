@@ -1,10 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
 
-export default function Card({ movie }) {
+export default function Card({ movie, handleCardClick }) {
   return (
     <CardWrapper>
-      <Figure>
+      <Figure onClick={() => handleCardClick(movie.id)}>
         <Image src={movie.large_cover_image} alt={movie.title} />
       </Figure>
       <Title>{movie.title}</Title>

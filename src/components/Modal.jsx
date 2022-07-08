@@ -42,12 +42,12 @@ function Overlay({ isFadeIn, duration, closeModal, children }) {
 }
 
 const Wrapper = styled.div`
-  position: absolute;
+  position: fixed;
   top: 0px;
   left: 0px;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: rgba(0, 0, 0, 0.7);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -58,17 +58,17 @@ const Wrapper = styled.div`
 
 const fadeIn = keyframes`
   0% {
-    transform: scale(0);
+    opacity: 0;
   }
   100% {
-    transform: scale(1);
+    opacity: 1;
   }
 `;
 const fadeOut = keyframes`
   0% {
-    transform: scale(1);
+    opacity: 1;
   }
   100% {
-    transform: scale(0);
+    opacity: 0;
   }
 `;
