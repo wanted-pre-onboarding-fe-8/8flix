@@ -20,11 +20,15 @@ export const useMovieModel = () => {
   const searchMovies = async (word) => {
     movieRequest.get(`?q=${word}`, getMoviesCallback);
   };
+  const searchLikedMovies = async () => {
+    movieRequest.get('?like=true', getMoviesCallback);
+  };
 
   return {
     movies,
     getMovies,
     patchMovieById,
     searchMovies,
+    searchLikedMovies,
   };
 };

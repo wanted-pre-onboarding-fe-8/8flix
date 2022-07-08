@@ -1,14 +1,21 @@
-import React, { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useMovieModel } from '../../models/useMovieModel';
 import styled from 'styled-components';
 import { theme } from '../../utils/constants/theme';
-import MockCard from '../../components/MockCard';
 import { useRecoilValue } from 'recoil';
 import { keywordState } from '../../recoil';
+import { useModal, Modal } from '../../components/Modal';
+import Detail from '../detail';
+import MyListCard from './MyListCard';
 
 export default function Main() {
-  const { movies, searchMovies } = useMovieModel();
+  const { movies, getMovies, searchLikedMovies, patchMovieById } =
+    useMovieModel();
   const keyword = useRecoilValue(keywordState);
+
+  const [selectedMovie, setSelectedMovie] = useState(null);
+  const duration = 500;
+  const { isOpen, isFadeIn, openModal, closeModal } = useModal(duration);
 
   const onClickCallback = (id, data) => {
     patchMovieById(id, data).then(getMovies);
@@ -17,25 +24,44 @@ export default function Main() {
     onClickCallback(id, data);
   };
   useEffect(() => {
-    searchMovies(keyword);
-  }, [keyword]);
+    searchLikedMovies();
+  }, []);
+
+  const handleCardClick = (movieId) => {
+    const [movie] = movies.filter((movie) => movie.id === movieId);
+    setSelectedMovie(movie);
+    openModal();
+  };
+
+  const handleLikeClick = (movieId, movieLike) => {
+    patchMovieById(movieId, { like: !movieLike }).then(getMovies);
+  };
 
   return (
     <Container>
-      <Title>Main</Title>
       <MovieSection>
         {movies?.map((movie) => {
           return (
-            !movie.like && (
-              <MockCard
+            movie.like && (
+              <MyListCard
                 key={movie.id}
                 movie={movie}
                 onDelete={() => onClickDelete(movie.id, { like: false })}
+                handleCardClick={handleCardClick}
+                handleLikeClick={handleLikeClick}
               />
             )
           );
         })}
       </MovieSection>
+      <Modal
+        isOpen={isOpen}
+        isFadeIn={isFadeIn}
+        duration={duration}
+        closeModal={closeModal}
+      >
+        {selectedMovie && <Detail movie={selectedMovie} />}
+      </Modal>
     </Container>
   );
 }
