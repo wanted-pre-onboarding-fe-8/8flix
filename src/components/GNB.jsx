@@ -111,3 +111,7 @@ const SearchBar = styled(Section).attrs({ as: 'form' })`
     }
   }
 `;
+
+const SearchDiv = styled.div`
+  width: 100%;
+`;
