@@ -34,7 +34,7 @@ export default function Main() {
   };
 
   const handleLikeClick = (movieId, movieLike) => {
-    patchMovieById(movieId, { like: !movieLike }).then(getMovies);
+    patchMovieById(movieId, { like: !movieLike }).then(searchLikedMovies);
   };
 
   return (
