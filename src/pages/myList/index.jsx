@@ -2,11 +2,18 @@ import React, { useEffect } from 'react';
 import { useMovieModel } from '../../models/useMovieModel';
 import styled from 'styled-components';
 import { theme } from '../../utils/constants/theme';
-import Card from '../../components/Card';
+import MockCard from '../../components/MockCard';
 
 export default function Main() {
   const { movies, getMovies } = useMovieModel();
 
+  const onClickCallback = (id, data) => {
+    patchMovieById(id, data).then(getMovies);
+  };
+
+  const onClickDelete = (id, data) => {
+    onClickCallback(id, data);
+  };
   useEffect(() => {
     getMovies();
   }, []);
@@ -16,7 +23,15 @@ export default function Main() {
       <Title>Main</Title>
       <MovieSection>
         {movies?.map((movie) => {
-          return <Card key={movie.id} movie={movie} />;
+          return (
+            movie.like && (
+              <MockCard
+                key={movie.id}
+                movie={movie}
+                onDelete={() => onClickDelete(movie.id, { like: false })}
+              />
+            )
+          );
         })}
       </MovieSection>
     </Container>
