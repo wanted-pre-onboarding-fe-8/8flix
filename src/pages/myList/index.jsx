@@ -50,10 +50,10 @@ const MovieSection = styled.section`
   margin-top: 1rem;
   padding: 0 1rem;
   @media ${theme.deviceSize.desktop} {
-    grid-template-columns: repeat(5, 1fr);
+    grid-template-columns: repeat(3, 1fr);
   }
   @media ${theme.deviceSize.tablet} {
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(2, 1fr);
   }
   @media ${theme.deviceSize.mobile} {
     grid-template-columns: repeat(1, 1fr);
