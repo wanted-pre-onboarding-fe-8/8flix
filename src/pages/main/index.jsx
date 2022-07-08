@@ -1,5 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useMovieModel } from '../../models/useMovieModel';
+import { useRecoilState } from 'recoil';
+import { keywordState } from '../../recoil';
 import styled from 'styled-components';
 import { theme } from '../../utils/constants/theme';
 import Card from '../../components/Card';
@@ -8,8 +10,9 @@ import Detail from '../detail';
 import useIntersectionObserver from '../../hooks/useInterceptionObserver';
 
 export default function Main() {
-  const { movies, getMovies, patchMovieById } = useMovieModel();
+  const { movies, getMovies, searchMovies, patchMovieById } = useMovieModel();
   const [selectedMovie, setSelectedMovie] = useState(null);
+  const [keyword] = useRecoilState(keywordState);
   const duration = 500;
   const { isOpen, isFadeIn, openModal, closeModal } = useModal(duration);
   const [showNum, setShowNum] = useState(10);
@@ -19,8 +22,8 @@ export default function Main() {
   });
 
   useEffect(() => {
-    getMovies();
-  }, []);
+    searchMovies(keyword);
+  }, [keyword]);
 
   const handleCardClick = (movieId) => {
     const [movie] = movies.filter((movie) => movie.id === movieId);
@@ -35,7 +38,6 @@ export default function Main() {
   return (
     <>
       <Container>
-        <Title>Main</Title>
         <MovieSection>
           {movies?.slice(0, showNum).map((movie) => {
             return (
@@ -43,6 +45,7 @@ export default function Main() {
                 key={movie.id}
                 movie={movie}
                 handleCardClick={handleCardClick}
+                handleLikeClick={handleLikeClick}
               />
             );
           })}
@@ -69,9 +72,6 @@ export default function Main() {
 }
 
 const Container = styled.main``;
-const Title = styled.h1`
-  text-align: center;
-`;
 const MovieSection = styled.section`
   display: grid;
   grid-gap: 1rem;
