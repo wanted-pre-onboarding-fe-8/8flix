@@ -8,8 +8,7 @@ import { keywordState } from '../../recoil';
 
 export default function Main() {
   const { movies, getMovies, searchMovies } = useMovieModel();
-  const keyword = useRecoilValue(keywordState);
-  // const keyword = 'Action';
+  const [keyword] = useRecoilValue(keywordState);
 
   const onClickCallback = (id, data) => {
     patchMovieById(id, data).then(getMovies);
