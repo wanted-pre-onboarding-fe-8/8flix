@@ -1,16 +1,22 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useMovieModel } from '../../models/useMovieModel';
 import styled from 'styled-components';
 import { theme } from '../../utils/constants/theme';
 import Card from '../../components/Card';
 import { useModal, Modal } from '../../components/Modal';
 import Detail from '../detail';
+import useIntersectionObserver from '../../hooks/useInterceptionObserver';
 
 export default function Main() {
   const { movies, getMovies, patchMovieById } = useMovieModel();
   const [selectedMovie, setSelectedMovie] = useState(null);
   const duration = 500;
   const { isOpen, isFadeIn, openModal, closeModal } = useModal(duration);
+  const [showNum, setShowNum] = useState(10);
+  const movieSectionRef = useRef(null);
+  const [ref] = useIntersectionObserver(movieSectionRef, () => {
+    setShowNum((pre) => pre + 10);
+  });
 
   useEffect(() => {
     getMovies();
@@ -31,17 +37,24 @@ export default function Main() {
       <Container>
         <Title>Main</Title>
         <MovieSection>
-          {movies?.map((movie) => {
+          {movies?.slice(0, showNum).map((movie) => {
             return (
               <Card
                 key={movie.id}
                 movie={movie}
                 handleCardClick={handleCardClick}
-                handleLikeClick={handleLikeClick}
               />
             );
           })}
         </MovieSection>
+        <div
+          ref={ref}
+          style={{
+            width: '30px',
+            height: '300px',
+            isVisibility: true,
+          }}
+        />
       </Container>
       <Modal
         isOpen={isOpen}
