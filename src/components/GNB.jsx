@@ -31,6 +31,8 @@ const Wrapper = styled.nav`
   background-color: black;
   width: 100vw;
   padding: 10px;
+  position: sticky;
+  top: 0;
 `;
 
 const Navigation = styled.div`
