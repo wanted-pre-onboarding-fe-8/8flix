@@ -1,7 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { IoPlay } from 'react-icons/io5';
-import { AiOutlinePlus, AiOutlineCheck } from 'react-icons/ai';
+import { AiFillStar, AiOutlineStar } from 'react-icons/ai';
 import { RiArrowDownSLine } from 'react-icons/ri';
 
 export default function MyListCard(/*{movie}*/) {
@@ -36,7 +35,7 @@ export default function MyListCard(/*{movie}*/) {
     state: 'ok',
     date_uploaded: '2022-06-30 22:38:10',
     date_uploaded_unix: 1656621490,
-    like: false,
+    like: true,
   };
 
   return (
@@ -54,10 +53,7 @@ export default function MyListCard(/*{movie}*/) {
         </Genres>
         <CardButtonWrapper>
           <CardButton>
-            <IoPlay />
-          </CardButton>
-          <CardButton>
-            {movie.like ? <AiOutlineCheck /> : <AiOutlinePlus />}
+            {movie.like ? <AiFillStar /> : <AiOutlineStar />}
           </CardButton>
           <CardButton>
             <RiArrowDownSLine />
