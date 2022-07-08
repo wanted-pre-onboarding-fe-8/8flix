@@ -1,9 +1,16 @@
 import React from 'react';
 import { useNavigate, Link as RouterLink } from 'react-router-dom';
 import styled from 'styled-components';
+import { theme } from '../utils/constants/theme';
 
 export default function GNB() {
   const navigate = useNavigate();
+
+  const handleSubmit = (event) => {
+    /*검색 처리*/
+    event.preventDefault();
+  };
+
   return (
     <Wrapper>
       <Navigation>
@@ -14,11 +21,12 @@ export default function GNB() {
             onClick={() => navigate('/')}
           />
         </Section>
-        <SearchBar
-          placeholder="🔍 영화 검색"
-          onChange={(event) => console.log('검색어 처리')}
-          onKeyDown={(event) => console.log('검색어 처리')}
-        />
+        <SearchBar onSubmit={handleSubmit}>
+          <input
+            placeholder="🔍 영화 검색"
+            onChange={(event) => console.log(event)}
+          />
+        </SearchBar>
         <Section>
           <TabLink to="my-list">즐겨찾기</TabLink>
         </Section>
@@ -33,27 +41,31 @@ const Wrapper = styled.nav`
   padding: 10px;
   position: sticky;
   top: 0;
+  min-width: 320px;
 `;
 
 const Navigation = styled.div`
+  box-sizing: border-box;
   height: 100%;
+  width: 100%;
   max-width: 1200px;
   padding: 0 30px;
   margin: 0 auto;
   display: flex;
-  flex-shrink: 0;
+  flex-shrink: 1;
   justify-content: center;
   align-items: center;
-  @media screen and (min-width: 320px) and (max-width: 768px) {
+  @media ${theme.deviceSize.mobile} {
     justify-content: space-between;
     padding: 0;
+    gap: 15px;
   }
 `;
 
 const Section = styled.div`
   flex: 1 0 127px;
-  @media screen and (min-width: 320px) and (max-width: 768px) {
-    flex: 0 0 0;
+  @media ${theme.deviceSize.mobile} {
+    flex: 0 0 80px;
   }
 `;
 
@@ -72,16 +84,19 @@ const TabLink = styled(RouterLink)`
   text-decoration: none;
   text-align: right;
   float: right;
-  @media screen and (min-width: 320px) and (max-width: 768px) {
+  @media ${theme.deviceSize.mobile} {
     width: 60px;
   }
 `;
 
-const SearchBar = styled.input`
+const SearchBar = styled(Section).attrs({ as: 'form' })`
   flex-grow: 1;
-  border-radius: 8px;
-  padding: 8px;
-  @media screen and (min-width: 320px) and (max-width: 768px) {
-    padding: 4px 0;
+  & > input {
+    border-radius: 8px;
+    padding: 8px;
+    width: 100%;
+    @media ${theme.deviceSize.mobile} {
+      padding: 8px 4px;
+    }
   }
 `;
