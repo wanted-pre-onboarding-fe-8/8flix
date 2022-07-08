@@ -7,7 +7,7 @@ import { useModal, Modal } from '../../components/Modal';
 import Detail from '../detail';
 
 export default function Main() {
-  const { movies, getMovies } = useMovieModel();
+  const { movies, getMovies, patchMovieById } = useMovieModel();
   const [selectedMovie, setSelectedMovie] = useState(null);
   const duration = 500;
   const { isOpen, isFadeIn, openModal, closeModal } = useModal(duration);
@@ -17,9 +17,13 @@ export default function Main() {
   }, []);
 
   const handleCardClick = (movieId) => {
-    const movie = movies.filter((movie) => movie.id === movieId)[0];
+    const [movie] = movies.filter((movie) => movie.id === movieId);
     setSelectedMovie(movie);
     openModal();
+  };
+
+  const handleLikeClick = (movieId, movieLike) => {
+    patchMovieById(movieId, { like: !movieLike }).then(getMovies);
   };
 
   return (
@@ -33,6 +37,7 @@ export default function Main() {
                 key={movie.id}
                 movie={movie}
                 handleCardClick={handleCardClick}
+                handleLikeClick={handleLikeClick}
               />
             );
           })}

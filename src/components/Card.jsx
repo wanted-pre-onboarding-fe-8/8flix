@@ -1,13 +1,16 @@
 import React from 'react';
 import styled from 'styled-components';
 
-export default function Card({ movie, handleCardClick }) {
+export default function Card({ movie, handleCardClick, handleLikeClick }) {
   return (
     <CardWrapper>
       <Figure onClick={() => handleCardClick(movie.id)}>
         <Image src={movie.large_cover_image} alt={movie.title} />
       </Figure>
       <Title>{movie.title}</Title>
+      <LikeBox onClick={() => handleLikeClick(movie.id, movie.like)}>
+        {movie.like ? <Like>💖</Like> : <Like>🤍</Like>}
+      </LikeBox>
     </CardWrapper>
   );
 }
@@ -15,6 +18,7 @@ export default function Card({ movie, handleCardClick }) {
 const CardWrapper = styled.div`
   margin-right: 1rem;
   width: 240px;
+  position: relative;
 `;
 
 const Figure = styled.figure`
@@ -38,4 +42,14 @@ const Title = styled.p`
   margin-top: 6px;
   font-size: 14px;
   color: gray;
+`;
+
+const Like = styled.span`
+  font-size: 30px;
+`;
+const LikeBox = styled.div`
+  position: absolute;
+  top: -15px;
+  right: -15px;
+  cursor: pointer;
 `;
