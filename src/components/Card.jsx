@@ -49,7 +49,7 @@ const Like = styled.span`
 `;
 const LikeBox = styled.div`
   position: absolute;
-  top: -20px;
-  right: -20px;
+  top: -15px;
+  right: -15px;
   cursor: pointer;
 `;
