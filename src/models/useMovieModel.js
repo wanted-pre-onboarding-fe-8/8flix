@@ -4,6 +4,7 @@ import { movieRequest } from '../services/movieService';
 
 export const useMovieModel = () => {
   const [movies, setMovies] = React.useState(null);
+  const [lists, setLists] = React.useState(null);
 
   const getMoviesCallback = (response) => {
     setMovies(response.data);
