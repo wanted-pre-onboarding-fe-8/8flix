@@ -25,11 +25,26 @@ export const useMovieModel = () => {
     movieRequest.get('?like=true', getMoviesCallback);
   };
 
+  const getMoviesByListsCallback = (response) => {
+    const movieLists = response.data;
+    let lists = [];
+    for (let movie of movieLists) {
+      lists.push(movie.title);
+    }
+    setLists(lists);
+  };
+
+  const getMoviesByLists = () => {
+    movieRequest.get('', getMoviesByListsCallback);
+  };
+
   return {
     movies,
     getMovies,
     patchMovieById,
     searchMovies,
     searchLikedMovies,
+    lists,
+    getMoviesByLists,
   };
 };

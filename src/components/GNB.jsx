@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import { theme } from '../utils/constants/theme';
 import { useRecoilState } from 'recoil';
 import { keywordState } from '../recoil';
+import { AutoComplete } from './AutoComplete';
 
 export default function GNB() {
   const navigate = useNavigate();
@@ -37,6 +38,9 @@ export default function GNB() {
             value={keyword}
           />
         </SearchBar>
+        {/* <SearchDiv> */}
+        <AutoComplete />
+        {/* </SearchDiv> */}
         <Section>
           <TabLink to="my-list">즐겨찾기</TabLink>
         </Section>
