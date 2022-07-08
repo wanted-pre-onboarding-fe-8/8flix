@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { AiFillStar, AiOutlineStar } from 'react-icons/ai';
 import { RiArrowDownSLine } from 'react-icons/ri';
+import { useState } from 'react';
 
 export default function MyListCard(/*{movie}*/) {
   const movie = {
@@ -38,6 +39,12 @@ export default function MyListCard(/*{movie}*/) {
     like: true,
   };
 
+  const [isLiked, setIsLiked] = useState(movie.like);
+
+  const handleLikeClick = () => {
+    setIsLiked((prev) => !prev);
+  };
+
   return (
     <CardWrapper>
       <Figure>
@@ -52,8 +59,8 @@ export default function MyListCard(/*{movie}*/) {
           ))}
         </Genres>
         <CardButtonWrapper>
-          <CardButton>
-            {movie.like ? <AiFillStar /> : <AiOutlineStar />}
+          <CardButton onClick={handleLikeClick}>
+            {isLiked ? <AiFillStar /> : <AiOutlineStar />}
           </CardButton>
           <CardButton>
             <RiArrowDownSLine />
