@@ -81,11 +81,11 @@ export function AutoComplete() {
 }
 
 const Div = styled.div`
-  background-color: #fff;
-  border-radius: 0px 0px 8px 8px;
+  margin: -1px;
 `;
 
 const Ul = styled.ul`
+  background-color: #fff;
   list-style: none;
   padding-left: 0px;
   margin: 0px;
@@ -93,20 +93,22 @@ const Ul = styled.ul`
   border-right: 1px solid gray;
   border-left: 1px solid gray;
   border-bottom: 1px solid gray;
+  border-top: 1px solid gray;
+  border-radius: 0px 0px 8px 8px;
 `;
 
 const Li = styled.li`
   border-top: 1px solid gray;
   height: 30px;
-
   padding-left: 10px;
-
   line-height: 30px;
   font-size: 12px;
   position: relative;
 `;
+
 const NoSearch = styled.li`
   padding-left: 10px;
+  color: gray;
   border-top: 1px solid gray;
   height: 30px;
   line-height: 30px;
