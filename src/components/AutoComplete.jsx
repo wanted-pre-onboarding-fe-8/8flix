@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { useMovieModel } from '../models/useMovieModel';
 import { useRecoilState } from 'recoil';
 import { keywordState } from '../recoil';
+import styled from 'styled-components';
 
 export function AutoComplete() {
   const { lists, getMoviesByLists } = useMovieModel();
@@ -78,3 +79,36 @@ export function AutoComplete() {
     </>
   );
 }
+
+const Div = styled.div`
+  background-color: #fff;
+  border-radius: 0px 0px 8px 8px;
+`;
+
+const Ul = styled.ul`
+  list-style: none;
+  padding-left: 0px;
+  margin: 0px;
+  width: 100%;
+  border-right: 1px solid gray;
+  border-left: 1px solid gray;
+  border-bottom: 1px solid gray;
+`;
+
+const Li = styled.li`
+  border-top: 1px solid gray;
+  height: 30px;
+
+  padding-left: 10px;
+
+  line-height: 30px;
+  font-size: 12px;
+  position: relative;
+`;
+const NoSearch = styled.li`
+  padding-left: 10px;
+  border-top: 1px solid gray;
+  height: 30px;
+  line-height: 30px;
+  font-size: 12px;
+`;
