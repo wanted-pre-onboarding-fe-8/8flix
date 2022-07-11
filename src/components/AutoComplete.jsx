@@ -3,6 +3,7 @@ import { useMovieModel } from '../models/useMovieModel';
 import { useRecoilState } from 'recoil';
 import { keywordState } from '../recoil';
 import styled from 'styled-components';
+import { theme } from '../utils/constants/theme';
 
 export function AutoComplete() {
   const { lists, getMoviesByLists } = useMovieModel();
@@ -82,6 +83,9 @@ export function AutoComplete() {
 
 const Div = styled.div`
   margin: -1px;
+  @media ${theme.deviceSize.mobile} {
+    width: 202px;
+  }
 `;
 
 const Ul = styled.ul`
@@ -104,6 +108,12 @@ const Li = styled.li`
   line-height: 30px;
   font-size: 12px;
   position: relative;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  @media ${theme.deviceSize.mobile} {
+    padding-left: 4px;
+  }
 `;
 
 const NoSearch = styled.li`
@@ -113,4 +123,7 @@ const NoSearch = styled.li`
   height: 30px;
   line-height: 30px;
   font-size: 12px;
+  @media ${theme.deviceSize.mobile} {
+    padding-left: 4px;
+  }
 `;
