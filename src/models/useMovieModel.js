@@ -24,10 +24,7 @@ export const useMovieModel = () => {
 
   const getMoviesByListsCallback = (response) => {
     const movieLists = response.data;
-    let lists = [];
-    for (let movie of movieLists) {
-      lists.push(movie.title);
-    }
+    const lists = movieLists.map((movie) => movie.title);
     setLists(lists);
   };
 
