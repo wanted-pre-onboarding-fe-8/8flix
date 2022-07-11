@@ -4,6 +4,7 @@ import { movieRequest } from '../services/movieService';
 
 export const useMovieModel = () => {
   const [movies, setMovies] = React.useState(null);
+  const [lists, setLists] = React.useState(null);
 
   const getMoviesCallback = (response) => {
     setMovies(response.data);
@@ -24,11 +25,26 @@ export const useMovieModel = () => {
     movieRequest.get('?like=true', getMoviesCallback);
   };
 
+  const getMoviesByListsCallback = (response) => {
+    const movieLists = response.data;
+    let lists = [];
+    for (let movie of movieLists) {
+      lists.push(movie.title);
+    }
+    setLists(lists);
+  };
+
+  const getMoviesByLists = () => {
+    movieRequest.get('', getMoviesByListsCallback);
+  };
+
   return {
     movies,
     getMovies,
     patchMovieById,
     searchMovies,
     searchLikedMovies,
+    lists,
+    getMoviesByLists,
   };
 };

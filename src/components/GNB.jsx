@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import { theme } from '../utils/constants/theme';
 import { useRecoilState } from 'recoil';
 import { keywordState } from '../recoil';
+import { AutoComplete } from './AutoComplete';
 
 export default function GNB() {
   const navigate = useNavigate();
@@ -30,13 +31,16 @@ export default function GNB() {
             onClick={() => navigate('/')}
           />
         </Section>
-        <SearchBar onSubmit={handleSubmit}>
-          <input
-            placeholder="🔍 영화 검색"
-            onChange={handleChange}
-            value={keyword}
-          />
-        </SearchBar>
+        <SearchDiv>
+          <SearchBar onSubmit={handleSubmit} isRadius={keyword}>
+            <input
+              placeholder="🔍 영화 검색"
+              onChange={handleChange}
+              value={keyword}
+            />
+          </SearchBar>
+          <AutoComplete />
+        </SearchDiv>
         <Section>
           <TabLink to="my-list">즐겨찾기</TabLink>
         </Section>
@@ -46,6 +50,8 @@ export default function GNB() {
 }
 
 const Wrapper = styled.nav`
+  display: flex;
+  height: 57px;
   background-color: black;
   width: 100vw;
   padding: 10px;
@@ -101,13 +107,24 @@ const TabLink = styled(RouterLink)`
 `;
 
 const SearchBar = styled(Section).attrs({ as: 'form' })`
-  flex-grow: 1;
+  /* flex-grow: 1; */
+  width: 400px;
   & > input {
-    border-radius: 8px;
-    padding: 8px;
+    height: 30px;
     width: 100%;
+    padding-left: 10px;
+    border-radius: ${(props) =>
+      props.isRadius === '' ? '8px' : '8px 8px 0px 0px'};
     @media ${theme.deviceSize.mobile} {
       padding: 8px 4px;
     }
   }
+  @media ${theme.deviceSize.mobile} {
+    width: 200px;
+  }
+`;
+
+const SearchDiv = styled.div`
+  height: inherit;
+  padding: 3px;
 `;
