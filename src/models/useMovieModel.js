@@ -29,6 +29,7 @@ export const useMovieModel = () => {
   };
 
   const getMoviesByLists = () => {
+    console.log('추천 검색어 API 조회');
     movieRequest.get('', getMoviesByListsCallback);
   };
 
