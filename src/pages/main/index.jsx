@@ -7,7 +7,7 @@ import { theme } from '../../utils/constants/theme';
 import Card from '../../components/Card';
 import { useModal, Modal } from '../../components/Modal';
 import Detail from '../detail';
-import useIntersectionObserver from '../../hooks/useInterceptionObserver';
+import useInfiniteScroll from '../../hooks/useInfiniteScroll';
 
 export default function Main() {
   const { movies, getMovies, searchMovies, patchMovieById } = useMovieModel();
@@ -15,14 +15,12 @@ export default function Main() {
   const [keyword] = useRecoilState(keywordState);
   const duration = 500;
   const { isOpen, isFadeIn, openModal, closeModal } = useModal(duration);
-  const [showNum, setShowNum] = useState(10);
-  const movieSectionRef = useRef(null);
-  const [ref] = useIntersectionObserver(movieSectionRef, () => {
-    setShowNum((pre) => pre + 10);
-  });
+  const { targetRef, initShowNum, showNum, InfiniteScrollBox } =
+    useInfiniteScroll();
 
   useEffect(() => {
     if (keyword !== '') {
+      initShowNum();
       searchMovies(keyword);
     }
   }, [keyword]);
@@ -39,40 +37,38 @@ export default function Main() {
     );
   };
 
-  if (!movies || movies.length === 0)
-    return <EmptyContainer>영화 검색을 해주세요.</EmptyContainer>;
+  const isEmpty = !movies || movies?.length === 0;
+
   return (
     <>
-      <Container>
-        <MovieSection>
-          {movies?.slice(0, showNum).map((movie) => {
-            return (
-              <Card
-                key={movie.id}
-                movie={movie}
-                handleCardClick={handleCardClick}
-                handleLikeClick={handleLikeClick}
-              />
-            );
-          })}
-        </MovieSection>
-        <div
-          ref={ref}
-          style={{
-            width: '30px',
-            height: '300px',
-            isVisibility: true,
-          }}
-        />
-      </Container>
-      <Modal
-        isOpen={isOpen}
-        isFadeIn={isFadeIn}
-        duration={duration}
-        closeModal={closeModal}
-      >
-        {selectedMovie && <Detail movie={selectedMovie} />}
-      </Modal>
+      {isEmpty && <EmptyContainer>영화 검색을 해주세요.</EmptyContainer>}
+      {!isEmpty && (
+        <>
+          <Container>
+            <MovieSection>
+              {movies?.slice(0, showNum).map((movie) => {
+                return (
+                  <Card
+                    key={movie.id}
+                    movie={movie}
+                    handleCardClick={handleCardClick}
+                    handleLikeClick={handleLikeClick}
+                  />
+                );
+              })}
+            </MovieSection>
+          </Container>
+          <Modal
+            isOpen={isOpen}
+            isFadeIn={isFadeIn}
+            duration={duration}
+            closeModal={closeModal}
+          >
+            {selectedMovie && <Detail movie={selectedMovie} />}
+          </Modal>
+        </>
+      )}
+      <div ref={targetRef} />
     </>
   );
 }
