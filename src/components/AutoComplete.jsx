@@ -36,17 +36,14 @@ export function AutoComplete() {
     let filterList = [];
     if (keyword !== '') {
       const regex = new RegExp(`^${keyword}`, 'i');
-      filterList = lists.filter((keyword) => regex.test(keyword)).sort(sortASC);
+      filterList = lists.filter((list) => regex.test(list)).sort(sortASC);
       setRecommendList(filterList);
-    } else {
-      setRecommendList([]);
     }
   };
 
   const onClick = (event) => {
     const { innerText } = event.target;
     setKeyword(innerText);
-    setRecommendList(() => []);
     setIsActive(false);
   };
 
