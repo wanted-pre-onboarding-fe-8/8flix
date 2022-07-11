@@ -1,11 +1,11 @@
 import React from 'react';
 import { useNavigate, Link as RouterLink } from 'react-router-dom';
 import styled from 'styled-components';
+import { PUBLIC_PATH, LOGO_URL } from '../utils/constants';
 import { theme } from '../utils/constants/theme';
 import { useRecoilState } from 'recoil';
 import { keywordState } from '../recoil';
 import { AutoComplete } from './AutoComplete';
-
 export default function GNB() {
   const navigate = useNavigate();
   const [keyword, setKeyword] = useRecoilState(keywordState);
@@ -27,7 +27,7 @@ export default function GNB() {
         <Section>
           <Logo
             to="/"
-            src="https://wfiot2018.iot.ieee.org/files/2016/01/sample-logo@2x.png"
+            src={LOGO_URL + 'Logo_GNB.png'}
             onClick={() => navigate('/')}
           />
         </Section>
@@ -53,7 +53,7 @@ const Wrapper = styled.nav`
   display: flex;
   height: 57px;
   background-color: black;
-  width: 100vw;
+  width: 100%;
   padding: 10px;
   position: sticky;
   top: 0;
@@ -66,12 +66,17 @@ const Navigation = styled.div`
   height: 100%;
   width: 100%;
   max-width: 1200px;
-  padding: 0 30px;
   margin: 0 auto;
   display: flex;
   flex-shrink: 1;
   justify-content: center;
   align-items: center;
+  &:first-child {
+    padding-left: 0.5rem;
+  }
+  &:last-child {
+    padding-right: 1rem;
+  }
   @media ${theme.deviceSize.mobile} {
     justify-content: space-between;
     padding: 0;
