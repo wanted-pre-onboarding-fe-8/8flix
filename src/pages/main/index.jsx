@@ -87,7 +87,10 @@ const EmptyContainer = styled.div`
   font-weight: 600;
 `;
 
-const Container = styled.main``;
+const Container = styled.main`
+  max-width: 1200px;
+  margin: auto;
+`;
 const MovieSection = styled.section`
   display: grid;
   grid-gap: 1rem;
@@ -100,6 +103,6 @@ const MovieSection = styled.section`
     grid-template-columns: repeat(3, 1fr);
   }
   @media ${theme.deviceSize.mobile} {
-    grid-template-columns: repeat(1, 1fr);
+    grid-template-columns: repeat(2, 1fr);
   }
 `;
