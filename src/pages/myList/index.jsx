@@ -7,10 +7,9 @@ import { keywordState } from '../../recoil';
 import { useModal, Modal } from '../../components/Modal';
 import Detail from '../detail';
 import MyListCard from './MyListCard';
-import Card from '../../components/Card';
+
 export default function Main() {
-  const { movies, getMovies, searchLikedMovies, patchMovieById } =
-    useMovieModel();
+  const { movies, searchLikedMovies, patchMovieById } = useMovieModel();
   const keyword = useRecoilValue(keywordState);
   const [selectedMovie, setSelectedMovie] = useState(null);
   const duration = 500;
@@ -50,16 +49,16 @@ export default function Main() {
   return (
     <Container>
       <MenuSection>
-        <Button type="button" onClick={() => handleAllSorted()}>
+        <Button type="button" onClick={handleAllSorted}>
           전 체
         </Button>
-        <Button type="button" onClick={() => handleRatingSorted()}>
+        <Button type="button" onClick={handleRatingSorted}>
           평점순
         </Button>
-        <Button type="button" onClick={() => handleYearSorted()}>
+        <Button type="button" onClick={handleYearSorted}>
           최신순
         </Button>
-        <Button type="button" onClick={() => handleRuntimeSorted()}>
+        <Button type="button" onClick={handleRuntimeSorted}>
           러닝타임
         </Button>
       </MenuSection>
@@ -99,12 +98,8 @@ const EmptyContainer = styled.div`
 `;
 
 const Container = styled.main`
+  margin: 0 auto;
   max-width: 1200px;
-  margin: auto;
-  min-width: 320px;
-`;
-const Title = styled.h1`
-  text-align: center;
 `;
 
 const MenuSection = styled.section`
@@ -138,10 +133,10 @@ const MovieSection = styled.section`
   padding: 0 1rem;
 
   @media ${theme.deviceSize.desktop} {
-    grid-template-columns: repeat(5, 1fr);
+    grid-template-columns: repeat(5, minmax(150px, auto));
   }
   @media ${theme.deviceSize.tablet} {
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(3, minmax(200px, auto));
   }
   @media ${theme.deviceSize.mobile} {
     grid-template-columns: repeat(2, 1fr);

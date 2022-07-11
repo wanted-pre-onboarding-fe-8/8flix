@@ -35,6 +35,10 @@ export default function MyListCard({
 }
 
 const CardWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  height: 400px;
   color: white;
   background-color: #181717;
   border-radius: 5px;
@@ -42,13 +46,13 @@ const CardWrapper = styled.div`
 `;
 
 const Figure = styled.figure`
+  flex-grow: 1;
   margin: 0;
   overflow: hidden;
   border-radius: 5px;
 `;
 
 const Image = styled.img`
-  display: block;
   width: 100%;
   height: 100%;
   transition: 200ms;
@@ -60,22 +64,19 @@ const Image = styled.img`
 `;
 
 const Content = styled.div`
-  /* margin: 1rem; */
-  width: 100%;
-  height: 50%;
-  background-color: #181717;
-  opacity: 0.7;
-  left: 0;
-  bottom: 0;
   position: absolute;
+  bottom: 0;
+  width: 100%;
+  background-color: #29292980;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
 `;
 
 const Title = styled.p`
   margin: 0;
   margin-top: 6px;
-  font-size: 1rem;
-  color: yellow;
-  text-align: center;
+  font-size: 14px;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -96,7 +97,6 @@ const Genres = styled.ul`
   margin-bottom: 1rem;
   padding: 0;
   display: flex;
-  /* flex-wrap: wrap; */
   list-style: none;
   white-space: nowrap;
   overflow: hidden;
