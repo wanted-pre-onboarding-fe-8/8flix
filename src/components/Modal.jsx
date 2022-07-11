@@ -21,11 +21,7 @@ export function Modal({ isOpen, isFadeIn, duration, closeModal, children }) {
   return (
     <>
       {isOpen && (
-        <Overlay
-          isFadeIn={isFadeIn}
-          duration={duration}
-          closeModal={closeModal}
-        >
+        <Overlay isFadeIn={isFadeIn} duration={duration} onClick={closeModal}>
           {children}
         </Overlay>
       )}
@@ -33,15 +29,7 @@ export function Modal({ isOpen, isFadeIn, duration, closeModal, children }) {
   );
 }
 
-function Overlay({ isFadeIn, duration, closeModal, children }) {
-  return (
-    <Wrapper isFadeIn={isFadeIn} duration={duration} onClick={closeModal}>
-      {children}
-    </Wrapper>
-  );
-}
-
-const Wrapper = styled.div`
+const Overlay = styled.div`
   position: fixed;
   top: 0px;
   left: 0px;
