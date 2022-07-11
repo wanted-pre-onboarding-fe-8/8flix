@@ -19,6 +19,8 @@ export function AutoComplete() {
     onChange(keyword);
     if (keyword === '') {
       setIsActive(false);
+    } else {
+      setIsActive(true);
     }
   }, [keyword]);
 
