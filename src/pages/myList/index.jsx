@@ -7,7 +7,7 @@ import { keywordState } from '../../recoil';
 import { useModal, Modal } from '../../components/Modal';
 import Detail from '../detail';
 import MyListCard from './MyListCard';
-
+import Card from '../../components/Card';
 export default function Main() {
   const { movies, getMovies, searchLikedMovies, patchMovieById } =
     useMovieModel();
@@ -99,8 +99,9 @@ const EmptyContainer = styled.div`
 `;
 
 const Container = styled.main`
+  max-width: 1200px;
   margin: auto;
-  max-width: 1400px;
+  min-width: 320px;
 `;
 const Title = styled.h1`
   text-align: center;
@@ -116,9 +117,9 @@ const MenuSection = styled.section`
 const Button = styled.button`
   text-align: center;
   background-color: #e8e8e8;
-  width: 10rem;
+  width: 5rem;
   height: 2rem;
-  font-size: 1rem;
+  font-size: 0.8rem;
   padding: 0 1rem;
   border-radius: 5px;
   cursor: pointer;
@@ -135,13 +136,14 @@ const MovieSection = styled.section`
   grid-gap: 1rem;
   margin-top: 1rem;
   padding: 0 1rem;
+
   @media ${theme.deviceSize.desktop} {
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(5, 1fr);
   }
   @media ${theme.deviceSize.tablet} {
     grid-template-columns: repeat(3, 1fr);
   }
   @media ${theme.deviceSize.mobile} {
-    grid-template-columns: repeat(1, 1fr);
+    grid-template-columns: repeat(2, 1fr);
   }
 `;
