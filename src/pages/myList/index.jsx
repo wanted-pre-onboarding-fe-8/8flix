@@ -12,45 +12,67 @@ export default function Main() {
   const { movies, getMovies, searchLikedMovies, patchMovieById } =
     useMovieModel();
   const keyword = useRecoilValue(keywordState);
-
   const [selectedMovie, setSelectedMovie] = useState(null);
   const duration = 500;
   const { isOpen, isFadeIn, openModal, closeModal } = useModal(duration);
-
-  const onClickCallback = (id, data) => {
-    patchMovieById(id, data).then(getMovies);
+  const [order, setOrder] = useState('id');
+  const sortedMovies = movies?.sort((a, b) => b[order] - a[order]);
+  const handleAllSorted = () => {
+    setOrder('id');
   };
-  const onClickDelete = (id, data) => {
-    onClickCallback(id, data);
+  const handleRatingSorted = () => {
+    setOrder('rating');
   };
-  useEffect(() => {
-    searchLikedMovies();
-  }, []);
+  const handleYearSorted = () => {
+    setOrder('year');
+  };
+  const handleRuntimeSorted = () => {
+    setOrder('runtime');
+  };
 
   const handleCardClick = (movieId) => {
     const [movie] = movies.filter((movie) => movie.id === movieId);
     setSelectedMovie(movie);
     openModal();
   };
-
   const handleLikeClick = (movieId, movieLike) => {
-    patchMovieById(movieId, { like: !movieLike }).then(searchLikedMovies);
+    patchMovieById(movieId, { like: !movieLike }).then(
+      searchLikedMovies(keyword)
+    );
   };
 
+  useEffect(() => {
+    searchLikedMovies(keyword);
+  }, [keyword]);
+
+  if (!movies || movies.length === 0)
+    return <EmptyContainer>검색 결과가 없습니다.</EmptyContainer>;
   return (
     <Container>
+      <MenuSection>
+        <Button type="button" onClick={() => handleAllSorted()}>
+          전 체
+        </Button>
+        <Button type="button" onClick={() => handleRatingSorted()}>
+          평점순
+        </Button>
+        <Button type="button" onClick={() => handleYearSorted()}>
+          최신순
+        </Button>
+        <Button type="button" onClick={() => handleRuntimeSorted()}>
+          러닝타임
+        </Button>
+      </MenuSection>
       <MovieSection>
-        {movies?.map((movie) => {
+        {sortedMovies?.map((movie, movieCount) => {
           return (
-            movie.like && (
-              <MyListCard
-                key={movie.id}
-                movie={movie}
-                onDelete={() => onClickDelete(movie.id, { like: false })}
-                handleCardClick={handleCardClick}
-                handleLikeClick={handleLikeClick}
-              />
-            )
+            <MyListCard
+              key={movie.id}
+              movie={movie}
+              movieCount={movieCount + 1}
+              handleCardClick={handleCardClick}
+              handleLikeClick={handleLikeClick}
+            />
           );
         })}
       </MovieSection>
@@ -66,20 +88,58 @@ export default function Main() {
   );
 }
 
-const Container = styled.main``;
+const EmptyContainer = styled.div`
+  width: 100vw;
+  height: 90vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 60px;
+  font-weight: 600;
+`;
+
+const Container = styled.main`
+  margin: auto;
+  max-width: 1400px;
+`;
 const Title = styled.h1`
   text-align: center;
 `;
+
+const MenuSection = styled.section`
+  display: flex;
+  flex-wrap: nowrap;
+  grid-gap: 0.1rem;
+  margin-top: 1rem;
+  padding: 0 0.1rem;
+`;
+const Button = styled.button`
+  text-align: center;
+  background-color: #e8e8e8;
+  width: 10rem;
+  height: 2rem;
+  font-size: 1rem;
+  padding: 0 1rem;
+  border-radius: 5px;
+  cursor: pointer;
+  &:first-child {
+    margin-left: auto;
+  }
+  &:last-child {
+    margin-right: auto;
+  }
+`;
+
 const MovieSection = styled.section`
   display: grid;
   grid-gap: 1rem;
   margin-top: 1rem;
   padding: 0 1rem;
   @media ${theme.deviceSize.desktop} {
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(4, 1fr);
   }
   @media ${theme.deviceSize.tablet} {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(3, 1fr);
   }
   @media ${theme.deviceSize.mobile} {
     grid-template-columns: repeat(1, 1fr);
