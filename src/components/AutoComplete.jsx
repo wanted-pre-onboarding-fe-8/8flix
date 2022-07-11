@@ -43,6 +43,13 @@ export function AutoComplete() {
     }
   };
 
+  const onClick = (event) => {
+    const { innerText } = event.target;
+    setKeyword(innerText);
+    setRecommendList(() => []);
+    setIsActive(false);
+  };
+
   const sortASC = (a, b) => {
     let tempA = a.toUpperCase();
     let tempB = b.toUpperCase();
@@ -55,17 +62,10 @@ export function AutoComplete() {
     return 0;
   };
 
-  const onClick = (event) => {
-    const { innerText } = event.target;
-    setKeyword(innerText);
-    setRecommendList(() => []);
-    setIsActive(false);
-  };
-
   return (
     <>
       {isActive && (
-        <Div>
+        <AutoCompleteDiv>
           <Ul>
             {recommendList.length !== 0 ? (
               recommendList.map((recommend, index) => (
@@ -77,13 +77,13 @@ export function AutoComplete() {
               <NoSearch>검색어 없음 ❌</NoSearch>
             )}
           </Ul>
-        </Div>
+        </AutoCompleteDiv>
       )}
     </>
   );
 }
 
-const Div = styled.div`
+const AutoCompleteDiv = styled.div`
   margin: -1px;
   @media ${theme.deviceSize.mobile} {
     width: 202px;
@@ -115,6 +115,11 @@ const Li = styled.li`
   white-space: nowrap;
   @media ${theme.deviceSize.mobile} {
     padding-left: 4px;
+  }
+
+  &:hover {
+    background-color: #d3d3d3;
+    color: white;
   }
 `;
 
