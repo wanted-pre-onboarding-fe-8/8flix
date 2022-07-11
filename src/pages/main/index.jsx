@@ -67,7 +67,7 @@ export default function Main() {
           </Modal>
         </>
       )}
-      <div ref={targetRef} />
+      <InfiniteScrollTargetBox ref={targetRef} />
     </>
   );
 }
@@ -100,4 +100,9 @@ const MovieSection = styled.section`
   @media ${theme.deviceSize.mobile} {
     grid-template-columns: repeat(2, 1fr);
   }
+`;
+
+const InfiniteScrollTargetBox = styled.div`
+  height: 5vh;
+  width: 100vw;
 `;

@@ -2,7 +2,7 @@ import React, { useRef, useState } from 'react';
 
 const options = {
   root: null,
-  rootMargin: '100px 0px',
+  rootMargin: '0px 0px',
   threshold: 0,
 };
 
