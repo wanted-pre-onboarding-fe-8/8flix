@@ -28,7 +28,6 @@ const useInfiniteScroll = () => {
   React.useEffect(() => {
     const observer = new IntersectionObserver(onIntersection, options);
     if (targetRef.current) {
-      console.log(targetRef.current);
       observer.observe(targetRef.current);
     }
     return () => {

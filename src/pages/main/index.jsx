@@ -15,8 +15,7 @@ export default function Main() {
   const [keyword] = useRecoilState(keywordState);
   const duration = 500;
   const { isOpen, isFadeIn, openModal, closeModal } = useModal(duration);
-  const { targetRef, initShowNum, showNum, InfiniteScrollBox } =
-    useInfiniteScroll();
+  const { targetRef, initShowNum, showNum } = useInfiniteScroll();
 
   useEffect(() => {
     if (keyword !== '') {
