@@ -136,6 +136,7 @@ const Li = styled.li`
   &:hover {
     background-color: #d3d3d3;
     color: white;
+    cursor: pointer;
   }
 `;
 
