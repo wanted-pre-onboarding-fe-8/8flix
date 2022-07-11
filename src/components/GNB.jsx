@@ -1,5 +1,5 @@
 import React from 'react';
-import { useNavigate, Link as RouterLink } from 'react-router-dom';
+import { Link as RouterLink } from 'react-router-dom';
 import styled from 'styled-components';
 import { PUBLIC_PATH, LOGO_URL } from '../utils/constants';
 import { theme } from '../utils/constants/theme';
@@ -7,7 +7,6 @@ import { useRecoilState } from 'recoil';
 import { keywordState } from '../recoil';
 import { AutoComplete } from './AutoComplete';
 export default function GNB() {
-  const navigate = useNavigate();
   const [keyword, setKeyword] = useRecoilState(keywordState);
 
   const handleSubmit = (event) => {
@@ -25,11 +24,9 @@ export default function GNB() {
     <Wrapper>
       <Navigation>
         <Section>
-          <Logo
-            to="/"
-            src={LOGO_URL + 'Logo_GNB.png'}
-            onClick={() => navigate('/')}
-          />
+          <a href="/">
+            <Logo src={LOGO_URL + 'Logo_GNB.png'} />
+          </a>
         </Section>
         <SearchDiv>
           <SearchBar onSubmit={handleSubmit} isRadius={keyword}>
@@ -118,8 +115,8 @@ const SearchBar = styled(Section).attrs({ as: 'form' })`
     height: 30px;
     width: 100%;
     padding-left: 10px;
-    border-radius: ${(props) =>
-      props.isRadius === '' ? '8px' : '8px 8px 0px 0px'};
+    /* border-radius: ${(props) =>
+      props.isRadius === '' ? '8px' : '8px 8px 0px 0px'}; */
     @media ${theme.deviceSize.mobile} {
       padding: 8px 4px;
     }
