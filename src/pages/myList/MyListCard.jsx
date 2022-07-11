@@ -35,12 +35,10 @@ export default function MyListCard({
 }
 
 const CardWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  width: 300px;
   color: white;
   background-color: #181717;
   border-radius: 5px;
+  position: relative;
 `;
 
 const Figure = styled.figure`
@@ -52,39 +50,57 @@ const Figure = styled.figure`
 const Image = styled.img`
   display: block;
   width: 100%;
-  height: 200px;
+  height: 100%;
   transition: 200ms;
+  cursor: pointer;
 
   &:hover {
-    cursor: pointer;
     transform: scale(1.05);
   }
 `;
 
 const Content = styled.div`
-  margin: 1rem;
+  /* margin: 1rem; */
+  width: 100%;
+  height: 50%;
+  background-color: #181717;
+  opacity: 0.7;
+  left: 0;
+  bottom: 0;
+  position: absolute;
 `;
 
 const Title = styled.p`
   margin: 0;
   margin-top: 6px;
-  font-size: 14px;
+  font-size: 1rem;
+  color: yellow;
+  text-align: center;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 `;
 
 const Description = styled.p`
-  font-size: 12px;
+  font-size: 1rem;
+  text-align: center;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 `;
 
 const Genres = styled.ul`
+  font-size: 1rem;
+
   margin: 0;
   margin-bottom: 1rem;
   padding: 0;
   display: flex;
-  flex-wrap: wrap;
+  /* flex-wrap: wrap; */
   list-style: none;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 `;
 
 const Genre = styled.li`
@@ -101,8 +117,8 @@ const CardButton = styled.button`
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 40px;
-  height: 40px;
+  width: 3rem;
+  height: 3rem;
   color: white;
   background-color: #181717;
   border: 1px solid gray;
