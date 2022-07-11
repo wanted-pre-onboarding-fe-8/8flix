@@ -10,6 +10,7 @@ export function AutoComplete() {
   const [keyword, setKeyword] = useRecoilState(keywordState);
   const [recommendList, setRecommendList] = React.useState([]);
   const [isActive, setIsActive] = React.useState(false);
+  const autoCompleteRef = React.useRef();
 
   useEffect(() => {
     getMoviesByLists();
@@ -64,10 +65,23 @@ export function AutoComplete() {
     return 0;
   };
 
+  useEffect(() => {
+    window.addEventListener('click', handleClickOutside);
+    return () => {
+      window.removeEventListener('click', handleClickOutside);
+    };
+  }, []);
+
+  const handleClickOutside = (event) => {
+    if (!autoCompleteRef.current) return;
+    const result = autoCompleteRef.current.contains(event.target);
+    setIsActive(result);
+  };
+
   return (
     <>
       {isActive && (
-        <AutoCompleteDiv>
+        <AutoCompleteDiv ref={autoCompleteRef}>
           <Ul>
             {recommendList.length !== 0 ? (
               recommendList.map((recommend, index) => (
@@ -102,7 +116,7 @@ const Ul = styled.ul`
   border-left: 1px solid gray;
   border-bottom: 1px solid gray;
   border-top: 1px solid gray;
-  border-radius: 0px 0px 8px 8px;
+  /* border-radius: 0px 0px 8px 8px; */
 `;
 
 const Li = styled.li`
