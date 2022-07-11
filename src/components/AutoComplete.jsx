@@ -33,6 +33,11 @@ export function AutoComplete() {
   }, [recommendList]);
 
   const onChange = (keyword) => {
+    const banRegExp = /[[]/gi;
+    if (banRegExp.test(keyword)) {
+      setKeyword('');
+      return;
+    }
     let filterList = [];
     if (keyword !== '') {
       const regex = new RegExp(`^${keyword}`, 'i');
