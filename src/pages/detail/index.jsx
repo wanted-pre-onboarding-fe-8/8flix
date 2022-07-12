@@ -5,13 +5,13 @@ import { theme } from '../../utils/constants/theme';
 import { IoClose } from 'react-icons/io5';
 import { AiFillStar } from 'react-icons/ai';
 
-export default function Detail({ movie }) {
+export default function Detail({ movie, closeModal }) {
   const [isMore, setIsMore] = useState(movie.description_full.length > 200);
 
   return (
     <Wrapper>
       <Figure>
-        <CloseButton>
+        <CloseButton onClick={closeModal}>
           <IoClose color="white" />
         </CloseButton>
         <Image src={movie.background_image_original} alt="background_image" />
