@@ -7,8 +7,10 @@ import Card from '../../components/Card';
 import { useModal, Modal } from '../../components/Modal';
 import Detail from '../detail';
 import useInfiniteScroll from '../../hooks/useInfiniteScroll';
+import { useMovie } from '../../models/useMovie';
 
 export default function Main() {
+  const { patchMovieById } = useMovie();
   const keyword = useRecoilValue(keywordState);
   const movies = useRecoilValue(searchSelector(movieState));
 
@@ -23,15 +25,13 @@ export default function Main() {
   }, [keyword]);
 
   const handleCardClick = (movieId) => {
-    const [movie] = movies.filter((movie) => movie.id === movieId);
+    const movie = movies.find((movie) => movie.id === movieId);
     setSelectedMovie(movie);
     openModal();
   };
 
   const handleLikeClick = (movieId, movieLike) => {
-    patchMovieById(movieId, { like: !movieLike }).then(() =>
-      searchMovies(keyword)
-    );
+    patchMovieById(movieId, { like: !movieLike });
   };
 
   const isEmpty = !movies || movies?.length === 0;

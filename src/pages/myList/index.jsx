@@ -1,69 +1,57 @@
-import React, { useState, useEffect } from 'react';
-import { useMovieModel } from '../../models/useMovieModel';
+import React, { useState } from 'react';
+import { useRecoilValue } from 'recoil';
+import { myListSelector, searchSelector, sortSelector } from '../../recoil';
 import styled from 'styled-components';
 import { theme } from '../../utils/constants/theme';
-import { useRecoilValue } from 'recoil';
-import { keywordState } from '../../recoil';
 import { useModal, Modal } from '../../components/Modal';
 import Detail from '../detail';
 import MyListCard from './MyListCard';
+import { useMovie } from '../../models/useMovie';
+
+const ORDER_ID = 'id';
+const ORDER_RATING = 'rating';
+const ORDER_YEAR = 'year';
+const ORDER_RUNTIME = 'runtime';
 
 export default function Main() {
-  const { movies, searchLikedMovies, patchMovieById } = useMovieModel();
-  const keyword = useRecoilValue(keywordState);
-  const [selectedMovie, setSelectedMovie] = useState(null);
+  const { patchMovieById } = useMovie();
+  const [order, setOrder] = useState(ORDER_ID);
+
+  const movies = useRecoilValue(
+    sortSelector({ movieSelector: searchSelector(myListSelector), order })
+  );
+
   const duration = 500;
   const { isOpen, isFadeIn, openModal, closeModal } = useModal(duration);
-  const [order, setOrder] = useState('id');
-  const sortedMovies = movies?.sort((a, b) => b[order] - a[order]);
-  const handleAllSorted = () => {
-    setOrder('id');
-  };
-  const handleRatingSorted = () => {
-    setOrder('rating');
-  };
-  const handleYearSorted = () => {
-    setOrder('year');
-  };
-  const handleRuntimeSorted = () => {
-    setOrder('runtime');
-  };
+  const [selectedMovie, setSelectedMovie] = useState(null);
 
   const handleCardClick = (movieId) => {
-    const [movie] = movies.filter((movie) => movie.id === movieId);
+    const movie = movies.find((movie) => movie.id === movieId);
     setSelectedMovie(movie);
     openModal();
   };
   const handleLikeClick = (movieId, movieLike) => {
-    patchMovieById(movieId, { like: !movieLike }).then(
-      searchLikedMovies(keyword)
-    );
+    patchMovieById(movieId, { like: !movieLike });
   };
 
-  useEffect(() => {
-    searchLikedMovies(keyword);
-  }, [keyword]);
-
-  if (!movies || movies.length === 0)
-    return <EmptyContainer>검색 결과가 없습니다.</EmptyContainer>;
   return (
     <Container>
       <MenuSection>
-        <Button type="button" onClick={handleAllSorted}>
+        <Button type="button" onClick={() => setOrder(ORDER_ID)}>
           전 체
         </Button>
-        <Button type="button" onClick={handleRatingSorted}>
+        <Button type="button" onClick={() => setOrder(ORDER_RATING)}>
           평점순
         </Button>
-        <Button type="button" onClick={handleYearSorted}>
+        <Button type="button" onClick={() => setOrder(ORDER_YEAR)}>
           최신순
         </Button>
-        <Button type="button" onClick={handleRuntimeSorted}>
+        <Button type="button" onClick={() => setOrder(ORDER_RUNTIME)}>
           러닝타임
         </Button>
       </MenuSection>
       <MovieSection>
-        {sortedMovies?.map((movie, movieCount) => {
+        {movies?.map((movie, movieCount) => {
           return (
             <MyListCard
               key={movie.id}
@@ -86,16 +74,6 @@ export default function Main() {
     </Container>
   );
 }
-
-const EmptyContainer = styled.div`
-  width: 100vw;
-  height: 90vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 60px;
-  font-weight: 600;
-`;
 
 const Container = styled.main`
   margin: 0 auto;
