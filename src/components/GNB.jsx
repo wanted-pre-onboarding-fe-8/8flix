@@ -55,6 +55,7 @@ export default function GNB() {
 const Wrapper = styled.header`
   background-color: #141414;
   position: sticky;
+  padding: 1rem;
   z-index: 1;
 `;
 
@@ -63,7 +64,6 @@ const Navigation = styled.nav`
   min-width: 320px;
   max-width: 1200px;
   margin: 0 auto;
-  padding: 10px;
   display: grid;
   grid-template-columns: auto 400px auto;
   @media ${theme.deviceSize.mobile} {
