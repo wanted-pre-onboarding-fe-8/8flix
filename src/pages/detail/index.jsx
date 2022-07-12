@@ -1,10 +1,13 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { cutString } from '../../utils/helpers';
 import styled from 'styled-components';
 import { theme } from '../../utils/constants/theme';
 import { IoClose } from 'react-icons/io5';
 import { AiFillStar } from 'react-icons/ai';
 
 export default function Detail({ movie }) {
+  const [isMore, setIsMore] = useState(movie.description_full.length > 200);
+
   return (
     <Wrapper>
       <Figure>
@@ -28,7 +31,14 @@ export default function Detail({ movie }) {
             <Genre key={index}>{genre}</Genre>
           ))}
         </Genres>
-        <Preview>{movie.description_full}</Preview>
+        <p>
+          {isMore
+            ? cutString(movie.description_full, 200)
+            : movie.description_full}
+          <MoreButton isMore={isMore} onClick={() => setIsMore(false)}>
+            더보기
+          </MoreButton>
+        </p>
       </Contents>
     </Wrapper>
   );
@@ -132,4 +142,9 @@ const Genre = styled.li`
   border: 1px solid #7b7b7b;
 `;
 
-const Preview = styled.p``;
+const MoreButton = styled.button`
+  display: ${(props) => (props.isMore ? 'inline-block' : 'none')};
+  cursor: pointer;
+  color: #7b7b7b;
+  background-color: transparent;
+`;
