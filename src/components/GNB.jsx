@@ -21,7 +21,7 @@ export default function GNB() {
     <Wrapper>
       <Navigation>
         <Section>
-          <RouterLink to="/" onClick={() => setKeyword('')}>
+          <RouterLink to="/">
             <Logo src={LOGO_URL + 'Logo_GNB.png'} />
           </RouterLink>
         </Section>
@@ -142,4 +142,5 @@ const Button = styled.button`
   outline: 0;
   border: 0;
   background-color: #fff;
+  cursor: pointer;
 `;
