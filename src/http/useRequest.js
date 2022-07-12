@@ -18,21 +18,25 @@ export function useRequest(service, { onError, onComplete }) {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  const errorHandling = (e) => {
-    setError(e);
+  const errorHandling = (error) => {
+    setError(error);
     setData(null);
     setLoading(false);
     if (onError) {
-      onError(e);
+      onError(error);
     }
   };
 
   const responseHandling = (res) => {
     setError(null);
-    setData(res?.data ?? res);
-    setLoading(false);
-    if (onComplete) {
-      onComplete(res);
+    try {
+      setData(res.data);
+      setLoading(false);
+      if (onComplete) {
+        onComplete(res);
+      }
+    } catch (error) {
+      errorHandling(error);
     }
   };
 
