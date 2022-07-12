@@ -41,7 +41,7 @@ export function AutoComplete() {
     }
     let filterList = [];
     if (keyword !== '') {
-      const regex = new RegExp(`^${keyword}`, 'i');
+      const regex = new RegExp(`${keyword}`, 'i');
       filterList = lists.filter((list) => regex.test(list)).sort(sortASC);
       setRecommendList(filterList);
     }
@@ -107,6 +107,8 @@ const AutoCompleteDiv = styled.div`
 `;
 
 const Ul = styled.ul`
+  max-height: 200px;
+  overflow-y: scroll;
   background-color: #fff;
   list-style: none;
   padding-left: 0px;
@@ -116,7 +118,6 @@ const Ul = styled.ul`
   border-left: 1px solid gray;
   border-bottom: 1px solid gray;
   border-top: 1px solid gray;
-  /* border-radius: 0px 0px 8px 8px; */
 `;
 
 const Li = styled.li`

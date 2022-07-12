@@ -6,6 +6,8 @@ import { theme } from '../utils/constants/theme';
 import { useRecoilState } from 'recoil';
 import { keywordState } from '../recoil';
 import { AutoComplete } from './AutoComplete';
+import { FaTrash } from 'react-icons/fa';
+
 export default function GNB() {
   const [keyword, setKeyword] = useRecoilState(keywordState);
 
@@ -20,6 +22,10 @@ export default function GNB() {
     setKeyword(value);
   };
 
+  const handleClear = () => {
+    setKeyword('');
+  };
+
   return (
     <Wrapper>
       <Navigation>
@@ -29,13 +35,18 @@ export default function GNB() {
           </a>
         </Section>
         <SearchDiv>
-          <SearchBar onSubmit={handleSubmit} isRadius={keyword}>
-            <input
-              placeholder="🔍 영화 검색"
-              onChange={handleChange}
-              value={keyword}
-            />
-          </SearchBar>
+          <Div>
+            <SearchBar onSubmit={handleSubmit} isRadius={keyword}>
+              <input
+                placeholder="🔍 영화 검색"
+                onChange={handleChange}
+                value={keyword}
+              />
+            </SearchBar>
+            <Button onClick={handleClear}>
+              <FaTrash />
+            </Button>
+          </Div>
           <AutoComplete />
         </SearchDiv>
         <Section>
@@ -109,24 +120,33 @@ const TabLink = styled(RouterLink)`
 `;
 
 const SearchBar = styled(Section).attrs({ as: 'form' })`
-  /* flex-grow: 1; */
-  width: 400px;
   & > input {
     height: 30px;
-    width: 100%;
     padding-left: 10px;
-    /* border-radius: ${(props) =>
-      props.isRadius === '' ? '8px' : '8px 8px 0px 0px'}; */
+    width: -webkit-fill-available;
     @media ${theme.deviceSize.mobile} {
-      padding: 8px 4px;
+      padding-left: 4px;
+      width: 175px;
     }
-  }
-  @media ${theme.deviceSize.mobile} {
-    width: 200px;
   }
 `;
 
 const SearchDiv = styled.div`
   height: inherit;
-  padding: 3px;
+  padding-top: 3px;
+  width: 400px;
+  @media ${theme.deviceSize.mobile} {
+    width: 200px;
+  }
+`;
+
+const Div = styled.div`
+  display: flex;
+  justify-content: space-between;
+`;
+
+const Button = styled.button`
+  outline: 0;
+  border: 0;
+  background-color: #fff;
 `;
