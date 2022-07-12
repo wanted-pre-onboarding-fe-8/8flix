@@ -100,7 +100,6 @@ const Container = styled.main`
 const MovieSection = styled.section`
   display: grid;
   grid-gap: 1rem;
-  padding: 0 1rem;
   @media ${theme.deviceSize.desktop} {
     grid-template-columns: repeat(5, 1fr);
   }
