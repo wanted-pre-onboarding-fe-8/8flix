@@ -36,13 +36,9 @@ export default function Main() {
   const isEmpty = !movies || movies?.length === 0;
 
   return (
-<<<<<<< HEAD
-    <>
-=======
     <OuterContainer>
       <Divider />
       {isEmpty && <EmptyContainer>영화 검색을 해주세요.</EmptyContainer>}
->>>>>>> f4bc38d (style: 메인 페이지 배경, 글자 색상 변경)
       {!isEmpty && (
         <>
           <Container>

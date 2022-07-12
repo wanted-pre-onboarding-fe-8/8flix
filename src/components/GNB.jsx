@@ -10,7 +10,7 @@ import { FaTrash } from 'react-icons/fa';
 
 export default function GNB() {
   const [keyword, setKeyword] = useRecoilState(keywordState);
-  const [isInputFocused, setIsInputFocused] = useState(false);
+  const [, setIsInputFocused] = useState(false);
 
   const handleChange = (event) => {
     const { value } = event.target;
@@ -27,7 +27,7 @@ export default function GNB() {
         <Logo src={LOGO_URL + 'Logo_GNB.png'} />
         <SearchBarContainer>
           <InputControl>
-            <SearchBar onSubmit={handleSubmit} isRadius={keyword}>
+            <SearchBar>
               <SearchInput
                 placeholder="🔍 영화 검색"
                 onChange={handleChange}
