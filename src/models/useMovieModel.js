@@ -24,14 +24,12 @@ export const useMovieModel = () => {
 
   const getMoviesByListsCallback = (response) => {
     const movieLists = response.data;
-    let lists = [];
-    for (let movie of movieLists) {
-      lists.push(movie.title);
-    }
+    const lists = movieLists.map((movie) => movie.title);
     setLists(lists);
   };
 
   const getMoviesByLists = () => {
+    console.log('추천 검색어 API 조회');
     movieRequest.get('', getMoviesByListsCallback);
   };
 

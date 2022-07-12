@@ -3,12 +3,14 @@ import { useMovieModel } from '../models/useMovieModel';
 import { useRecoilState } from 'recoil';
 import { keywordState } from '../recoil';
 import styled from 'styled-components';
+import { theme } from '../utils/constants/theme';
 
 export function AutoComplete() {
   const { lists, getMoviesByLists } = useMovieModel();
   const [keyword, setKeyword] = useRecoilState(keywordState);
   const [recommendList, setRecommendList] = React.useState([]);
   const [isActive, setIsActive] = React.useState(false);
+  const autoCompleteRef = React.useRef();
 
   useEffect(() => {
     getMoviesByLists();
@@ -18,6 +20,8 @@ export function AutoComplete() {
     onChange(keyword);
     if (keyword === '') {
       setIsActive(false);
+    } else {
+      setIsActive(true);
     }
   }, [keyword]);
 
@@ -30,14 +34,23 @@ export function AutoComplete() {
   }, [recommendList]);
 
   const onChange = (keyword) => {
+    const banRegExp = /[[]/gi;
+    if (banRegExp.test(keyword)) {
+      setKeyword('');
+      return;
+    }
     let filterList = [];
     if (keyword !== '') {
       const regex = new RegExp(`^${keyword}`, 'i');
-      filterList = lists.filter((keyword) => regex.test(keyword)).sort(sortASC);
+      filterList = lists.filter((list) => regex.test(list)).sort(sortASC);
       setRecommendList(filterList);
-    } else {
-      setRecommendList([]);
     }
+  };
+
+  const onClick = (event) => {
+    const { innerText } = event.target;
+    setKeyword(innerText);
+    setIsActive(false);
   };
 
   const sortASC = (a, b) => {
@@ -52,17 +65,23 @@ export function AutoComplete() {
     return 0;
   };
 
-  const onClick = (event) => {
-    const { innerText } = event.target;
-    setKeyword(innerText);
-    setRecommendList(() => []);
-    setIsActive(false);
+  useEffect(() => {
+    window.addEventListener('click', handleClickOutside);
+    return () => {
+      window.removeEventListener('click', handleClickOutside);
+    };
+  }, []);
+
+  const handleClickOutside = (event) => {
+    if (!autoCompleteRef.current) return;
+    const result = autoCompleteRef.current.contains(event.target);
+    setIsActive(result);
   };
 
   return (
     <>
       {isActive && (
-        <Div>
+        <AutoCompleteDiv ref={autoCompleteRef}>
           <Ul>
             {recommendList.length !== 0 ? (
               recommendList.map((recommend, index) => (
@@ -74,14 +93,17 @@ export function AutoComplete() {
               <NoSearch>검색어 없음 ❌</NoSearch>
             )}
           </Ul>
-        </Div>
+        </AutoCompleteDiv>
       )}
     </>
   );
 }
 
-const Div = styled.div`
+const AutoCompleteDiv = styled.div`
   margin: -1px;
+  @media ${theme.deviceSize.mobile} {
+    width: 202px;
+  }
 `;
 
 const Ul = styled.ul`
@@ -94,7 +116,7 @@ const Ul = styled.ul`
   border-left: 1px solid gray;
   border-bottom: 1px solid gray;
   border-top: 1px solid gray;
-  border-radius: 0px 0px 8px 8px;
+  /* border-radius: 0px 0px 8px 8px; */
 `;
 
 const Li = styled.li`
@@ -104,6 +126,18 @@ const Li = styled.li`
   line-height: 30px;
   font-size: 12px;
   position: relative;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  @media ${theme.deviceSize.mobile} {
+    padding-left: 4px;
+  }
+
+  &:hover {
+    background-color: #d3d3d3;
+    color: white;
+    cursor: pointer;
+  }
 `;
 
 const NoSearch = styled.li`
@@ -113,4 +147,7 @@ const NoSearch = styled.li`
   height: 30px;
   line-height: 30px;
   font-size: 12px;
+  @media ${theme.deviceSize.mobile} {
+    padding-left: 4px;
+  }
 `;
