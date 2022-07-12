@@ -5,7 +5,7 @@ import styled from 'styled-components';
 import { theme } from '../../utils/constants/theme';
 import { useModal, Modal } from '../../components/Modal';
 import Detail from '../detail';
-import MyListCard from './MyListCard';
+import Card from '../../components/Card';
 import { useMovie } from '../../models/useMovie';
 
 const ORDER_ID = 'id';
@@ -53,7 +53,7 @@ export default function Main() {
       <MovieSection>
         {movies?.map((movie, movieCount) => {
           return (
-            <MyListCard
+            <Card
               key={movie.id}
               movie={movie}
               movieCount={movieCount + 1}
