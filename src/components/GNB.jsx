@@ -24,7 +24,9 @@ export default function GNB() {
   return (
     <Wrapper>
       <Navigation>
-        <Logo src={LOGO_URL + 'Logo_GNB.png'} />
+        <RouterLink to="/">
+          <Logo src={LOGO_URL + 'Logo_GNB.png'} />
+        </RouterLink>
         <SearchBarContainer>
           <InputControl>
             <SearchBar>
