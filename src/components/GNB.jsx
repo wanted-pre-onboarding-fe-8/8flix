@@ -44,9 +44,7 @@ export default function GNB() {
             <AutoComplete />
           </AutoCompleteContainer>
         </SearchBarContainer>
-        <TabLink to="my-list">
-          <TextBox>즐겨찾기</TextBox>
-        </TabLink>
+        <TabLink to="my-list">즐겨찾기</TabLink>
       </Navigation>
     </Wrapper>
   );
@@ -134,8 +132,4 @@ const TabLink = styled(RouterLink)`
   align-items: center;
   height: 30px;
   font-size: 14px;
-`;
-const TextBox = styled.span`
-  padding: 0.3rem;
-  border: 1px solid #fff;
 `;

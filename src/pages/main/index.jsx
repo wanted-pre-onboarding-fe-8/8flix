@@ -40,6 +40,7 @@ export default function Main() {
     <>
 =======
     <OuterContainer>
+      <Divider />
       {isEmpty && <EmptyContainer>영화 검색을 해주세요.</EmptyContainer>}
 >>>>>>> f4bc38d (style: 메인 페이지 배경, 글자 색상 변경)
       {!isEmpty && (
@@ -77,6 +78,15 @@ export default function Main() {
 const OuterContainer = styled.div`
   background-color: #141414;
   color: #fff;
+`;
+
+const Divider = styled.div`
+  width: 100%;
+  min-width: 350;
+  max-width: 1200px;
+  height: 1px;
+  background-color: #fff;
+  margin: 0 auto;
 `;
 
 const EmptyContainer = styled.div`
