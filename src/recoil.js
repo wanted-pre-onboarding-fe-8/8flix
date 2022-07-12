@@ -28,8 +28,8 @@ export const searchSelector = selectorFamily({
       if (keyword === '') return movies;
       if (keyword.includes('[')) return [];
 
-      const regex = new RegExp(`^${keyword}`, 'i');
-      return movies.filter(({ title }) => regex.test(title)).sort();
+      const regexTitle = new RegExp(`${keyword}`, 'i');
+      return movies.filter(({ title }) => regexTitle.test(title)).sort();
     },
 });
 
@@ -53,9 +53,9 @@ export const recommendsSelector = selectorFamily({
       if (keyword.includes('[')) return [];
 
       const movies = get(movieSelector);
-      const regex = new RegExp(`^${keyword}`, 'i');
+      const regexTitle = new RegExp(`${keyword}`, 'i');
       const searchedMovies = movies
-        .filter(({ title }) => regex.test(title))
+        .filter(({ title }) => regexTitle.test(title))
         .sort();
       return searchedMovies.map(({ title }) => title);
     },
