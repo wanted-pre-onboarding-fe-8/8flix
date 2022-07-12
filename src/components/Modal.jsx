@@ -22,7 +22,9 @@ export function Modal({ isOpen, isFadeIn, duration, closeModal, children }) {
     <>
       {isOpen && (
         <Overlay isFadeIn={isFadeIn} duration={duration} onClick={closeModal}>
-          {children}
+          <Wrapper onClick={(event) => event.stopPropagation()}>
+            {children}
+          </Wrapper>
         </Overlay>
       )}
     </>
@@ -43,6 +45,7 @@ const Overlay = styled.div`
   animation: ${(props) => (props.isFadeIn ? fadeIn : fadeOut)};
   animation-duration: ${(props) => `${props.duration + 100}ms`};
 `;
+const Wrapper = styled.div``;
 
 const fadeIn = keyframes`
   0% {
