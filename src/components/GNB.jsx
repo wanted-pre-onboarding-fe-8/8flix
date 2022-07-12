@@ -17,6 +17,30 @@ export default function GNB() {
     setKeyword(value);
   };
 
+  const handleClear = () => {
+    setKeyword('');
+  };
+
+  function MobileNavigation() {
+    return (
+      <MobileNav>
+        <section>
+          <Logo src={LOGO_URL + 'Logo_GNB.png'} />
+          <TabLink to="my-list">즐겨찾기</TabLink>
+        </section>
+        <section>
+          <SearchBar onSubmit={handleSubmit} isRadius={keyword}>
+            <input
+              placeholder="🔍 영화 검색"
+              onChange={handleChange}
+              value={keyword}
+            />
+          </SearchBar>
+        </section>
+      </MobileNav>
+    );
+  }
+
   return (
     <Wrapper>
       <Navigation>
@@ -46,13 +70,22 @@ export default function GNB() {
           <TabLink to="my-list">즐겨찾기</TabLink>
         </Section>
       </Navigation>
+      <MobileNavigation />
     </Wrapper>
   );
 }
 
+const MobileNav = styled.nav`
+  display: none;
+  width: 100%;
+  @media ${theme.deviceSize.mobile} {
+    display: flex;
+    flex-direction: column;
+  }
+`;
+
 const Wrapper = styled.nav`
   display: flex;
-  height: 57px;
   background-color: #141414;
   width: 100%;
   padding: 10px;
@@ -79,6 +112,7 @@ const Navigation = styled.div`
     padding-right: 1rem;
   }
   @media ${theme.deviceSize.mobile} {
+    display: none;
     justify-content: space-between;
     padding: 0;
     gap: 15px;
@@ -118,8 +152,7 @@ const SearchBar = styled(Section).attrs({ as: 'form' })`
     padding-left: 10px;
     width: -webkit-fill-available;
     @media ${theme.deviceSize.mobile} {
-      padding-left: 4px;
-      width: 175px;
+      width: 100%;
     }
   }
 `;
