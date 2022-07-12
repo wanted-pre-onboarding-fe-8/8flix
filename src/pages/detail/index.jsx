@@ -1,65 +1,62 @@
 import React from 'react';
 import styled from 'styled-components';
-import { theme } from '../../utils/constants/theme';
-import { cutString, getTimeStringByMinute } from '../../utils/helpers';
+import { IoClose } from 'react-icons/io5';
+import { AiFillStar } from 'react-icons/ai';
 
 export default function Detail({ movie }) {
-  const genres = movie.genres.slice(0, 3).join(', ');
-  const summary = cutString(movie.summary, 500);
-  const runtime = getTimeStringByMinute(movie.runtime);
-
   return (
     <Wrapper>
-      <Image src={movie.background_image_original} alt="background" />
-      <Section>
+      <Figure>
+        <CloseButton>
+          <IoClose />
+        </CloseButton>
+        <Image src={movie.background_image_original} alt="background_image" />
+      </Figure>
+      <Contents>
         <Title>{movie.title}</Title>
-        <InfoBody>
-          <Text>🎉 {movie.year}년</Text>
-          <Text>⭐ {movie.rating}</Text>
-          <Text>🕘 {runtime}</Text>
-          <Text>😎 {genres}</Text>
-        </InfoBody>
-        {summary.length > 0 && <Text>{summary}</Text>}
-      </Section>
+        <InfoBox>
+          <Year>{movie.year}</Year>
+          <RunTime>{movie.runtime}</RunTime>
+          <RatingWrapper>
+            <AiFillStar />
+            <RatingText>{movie.rating} / 10</RatingText>
+          </RatingWrapper>
+        </InfoBox>
+        <Genres>
+          {movie.genres.map((genre, index) => (
+            <Genre key={index}>{genre}</Genre>
+          ))}
+        </Genres>
+        <Preview>{movie.description_full}</Preview>
+      </Contents>
     </Wrapper>
   );
 }
 
-const Wrapper = styled.div`
-  max-width: 600px;
-  border-radius: 25px;
-  background-color: #fafafa;
-  overflow: hidden;
+const Wrapper = styled.div``;
 
-  @media ${theme.deviceSize.desktop} {
-    width: 600px;
-  }
-  @media ${theme.deviceSize.tablet} {
-    width: 90%;
-  }
-  @media ${theme.deviceSize.mobile} {
-    width: 90%;
-  }
-`;
+const Figure = styled.figure``;
 
-const Image = styled.img`
-  width: 100%;
-  display: block;
-`;
+const Image = styled.img``;
 
-const Section = styled.section`
-  padding: 10px 20px 5px 20px;
-`;
+const CloseButton = styled.button``;
 
-const InfoBody = styled.div`
-  display: flex;
-  justify-content: space-between;
-`;
+const Contents = styled.div``;
 
-const Text = styled.p`
-  padding: 0px;
-  margin-top: 5px;
-`;
-const Title = styled(Text)`
-  font-weight: 600;
-`;
+const Title = styled.h3``;
+
+const InfoBox = styled.div``;
+
+const Year = styled.span``;
+
+const RunTime = styled.span``;
+
+const RatingWrapper = styled.div``;
+
+const RatingText = styled.span``;
+
+const Genres = styled.ul``;
+
+const Genre = styled.li``;
+
+const Preview = styled.p``;
