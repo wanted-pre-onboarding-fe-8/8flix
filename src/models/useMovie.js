@@ -1,6 +1,6 @@
 import { useRequest } from '../http/useRequest';
 import { GET, PATCH, POST } from '../utils/constants/request';
-import { movieService } from '../http/testRequest';
+import { movieService } from '../services/movieService';
 
 export function useMovie() {
   const {
