@@ -53,7 +53,7 @@ export default function GNB() {
 const Wrapper = styled.nav`
   display: flex;
   height: 57px;
-  background-color: black;
+  background-color: #141414;
   width: 100%;
   padding: 10px;
   position: sticky;
