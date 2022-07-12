@@ -9,7 +9,6 @@ export const movieState = atom({
   key: 'movies',
   default: [],
 });
-// const movie = useRecoilValue(movieState);
 
 export const myListSelector = selector({
   key: 'myListSelector',
@@ -18,7 +17,6 @@ export const myListSelector = selector({
     return movies.filter((movie) => movie.like);
   },
 });
-// const myList = useRecoilValue(myListSelector);
 
 export const searchSelector = selectorFamily({
   key: 'searchSelector',
@@ -28,12 +26,12 @@ export const searchSelector = selectorFamily({
       const keyword = get(keywordState);
       const movies = get(movieSelector);
       if (keyword === '') return movies;
+      if (keyword.includes('[')) return [];
 
       const regex = new RegExp(`^${keyword}`, 'i');
       return movies.filter(({ title }) => regex.test(title)).sort();
     },
 });
-// const searchedList = useRecoilValue(searchSelector(movieState));
 
 export const sortSelector = selectorFamily({
   key: 'sortSelector',
@@ -44,7 +42,6 @@ export const sortSelector = selectorFamily({
       return movies.sort((a, b) => b[order] - a[order]);
     },
 });
-// const sortedList = useRecoilValue(sortSelector({ movieSelector: myListSelector, order }));
 
 export const recommendsSelector = selectorFamily({
   key: 'recommendsSelector',
@@ -53,6 +50,7 @@ export const recommendsSelector = selectorFamily({
     ({ get }) => {
       const keyword = get(keywordState);
       if (keyword === '') return [];
+      if (keyword.includes('[')) return [];
 
       const movies = get(movieSelector);
       const regex = new RegExp(`^${keyword}`, 'i');
