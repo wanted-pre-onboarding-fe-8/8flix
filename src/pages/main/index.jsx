@@ -79,6 +79,9 @@ const EmptyContainer = styled.div`
   align-items: center;
   font-size: 60px;
   font-weight: 600;
+  @media ${theme.deviceSize.mobile} {
+    font-size: 24px;
+  }
 `;
 
 const Container = styled.main`
