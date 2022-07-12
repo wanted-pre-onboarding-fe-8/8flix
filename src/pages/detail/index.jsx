@@ -47,7 +47,7 @@ const Wrapper = styled.div`
   min-width: 800px;
   max-width: 800px;
   min-height: 500px;
-  background-color: #302f2f;
+  background-color: #1b1b1b;
   color: #7b7b7b;
   border-radius: 10px;
 
