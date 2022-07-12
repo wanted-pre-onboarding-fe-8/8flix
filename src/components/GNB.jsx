@@ -10,7 +10,7 @@ import { FaTrash } from 'react-icons/fa';
 
 export default function GNB() {
   const [keyword, setKeyword] = useRecoilState(keywordState);
-  const [, setIsInputFocused] = useState(false);
+  const [isInputFocused, setIsInputFocused] = useState(false);
 
   const handleChange = (event) => {
     const { value } = event.target;
@@ -41,7 +41,7 @@ export default function GNB() {
             </Button>
           </InputControl>
           <AutoCompleteContainer>
-            <AutoComplete />
+            <AutoComplete isActive={isInputFocused} />
           </AutoCompleteContainer>
         </SearchBarContainer>
         <TabLink to="my-list">즐겨찾기</TabLink>
@@ -60,6 +60,7 @@ const Navigation = styled.nav`
   width: 100%;
   min-width: 320px;
   max-width: 1200px;
+  padding: 0 4px;
   margin: 0 auto;
   display: grid;
   grid-template-columns: auto 400px auto;
