@@ -36,7 +36,12 @@ export default function Main() {
   const isEmpty = !movies || movies?.length === 0;
 
   return (
+<<<<<<< HEAD
     <>
+=======
+    <OuterContainer>
+      {isEmpty && <EmptyContainer>영화 검색을 해주세요.</EmptyContainer>}
+>>>>>>> f4bc38d (style: 메인 페이지 배경, 글자 색상 변경)
       {!isEmpty && (
         <>
           <Container>
@@ -66,9 +71,13 @@ export default function Main() {
         </>
       )}
       <InfiniteScrollTargetBox ref={targetRef} />
-    </>
+    </OuterContainer>
   );
 }
+const OuterContainer = styled.div`
+  background-color: #141414;
+  color: #fff;
+`;
 
 const EmptyContainer = styled.div`
   width: 100vw;
@@ -86,11 +95,11 @@ const EmptyContainer = styled.div`
 const Container = styled.main`
   max-width: 1200px;
   margin: auto;
+  padding-top: 1.5rem;
 `;
 const MovieSection = styled.section`
   display: grid;
   grid-gap: 1rem;
-  margin-top: 1rem;
   padding: 0 1rem;
   @media ${theme.deviceSize.desktop} {
     grid-template-columns: repeat(5, 1fr);
