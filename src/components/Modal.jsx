@@ -46,7 +46,10 @@ const Overlay = styled.div`
   animation: ${(props) => (props.isFadeIn ? fadeIn : fadeOut)};
   animation-duration: ${(props) => `${props.duration + 100}ms`};
 `;
-const Wrapper = styled.div``;
+const Wrapper = styled.div`
+  position: absolute;
+  top: 100px;
+`;
 
 const fadeIn = keyframes`
   0% {

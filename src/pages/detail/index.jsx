@@ -6,40 +6,33 @@ import { AiFillStar } from 'react-icons/ai';
 
 export default function Detail({ movie }) {
   return (
-    <Layout>
-      <Wrapper>
-        <Figure>
-          <CloseButton>
-            <IoClose color="white" />
-          </CloseButton>
-          <Image src={movie.background_image_original} alt="background_image" />
-        </Figure>
-        <Contents>
-          <Title>{movie.title}</Title>
-          <InfoBox>
-            <Year>{movie.year}</Year>
-            <RunTime>{movie.runtime}분</RunTime>
-            <RatingWrapper>
-              <AiFillStar style={{ color: 'red', marginRight: '0.2rem' }} />
-              <RatingText>{movie.rating} / 10</RatingText>
-            </RatingWrapper>
-          </InfoBox>
-          <Genres>
-            {movie.genres.map((genre, index) => (
-              <Genre key={index}>{genre}</Genre>
-            ))}
-          </Genres>
-          <Preview>{movie.description_full}</Preview>
-        </Contents>
-      </Wrapper>
-    </Layout>
+    <Wrapper>
+      <Figure>
+        <CloseButton>
+          <IoClose color="white" />
+        </CloseButton>
+        <Image src={movie.background_image_original} alt="background_image" />
+      </Figure>
+      <Contents>
+        <Title>{movie.title}</Title>
+        <InfoBox>
+          <Year>{movie.year}</Year>
+          <RunTime>{movie.runtime}분</RunTime>
+          <RatingWrapper>
+            <AiFillStar style={{ color: 'red', marginRight: '0.2rem' }} />
+            <RatingText>{movie.rating} / 10</RatingText>
+          </RatingWrapper>
+        </InfoBox>
+        <Genres>
+          {movie.genres.map((genre, index) => (
+            <Genre key={index}>{genre}</Genre>
+          ))}
+        </Genres>
+        <Preview>{movie.description_full}</Preview>
+      </Contents>
+    </Wrapper>
   );
 }
-
-const Layout = styled.div`
-  position: absolute;
-  top: 100px;
-`;
 
 const Wrapper = styled.div`
   margin: 0 2rem;
