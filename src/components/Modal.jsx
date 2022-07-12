@@ -37,6 +37,7 @@ const Overlay = styled.div`
   left: 0px;
   width: 100%;
   height: 100%;
+  overflow: scroll;
   background-color: rgba(0, 0, 0, 0.7);
   display: flex;
   justify-content: center;
