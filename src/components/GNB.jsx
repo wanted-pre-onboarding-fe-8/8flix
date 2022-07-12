@@ -51,7 +51,6 @@ export default function GNB() {
 }
 
 const Wrapper = styled.header`
-  background-color: #141414;
   position: sticky;
   padding: 1rem;
   z-index: 1;

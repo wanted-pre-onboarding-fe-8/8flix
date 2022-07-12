@@ -75,10 +75,7 @@ export default function Main() {
     </OuterContainer>
   );
 }
-const OuterContainer = styled.div`
-  background-color: #141414;
-  color: #fff;
-`;
+const OuterContainer = styled.div``;
 
 const Divider = styled.div`
   width: 100%;
