@@ -107,6 +107,8 @@ const AutoCompleteDiv = styled.div`
 `;
 
 const Ul = styled.ul`
+  max-height: 200px;
+  overflow-y: scroll;
   background-color: #fff;
   list-style: none;
   padding-left: 0px;
