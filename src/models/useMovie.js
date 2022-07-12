@@ -1,19 +1,20 @@
 import { useRequest } from '../http/useRequest';
 import { GET, PATCH, POST } from '../utils/constants/request';
 import { movieService } from '../services/movieService';
+import { useSetRecoilState } from 'recoil';
+import { movieState } from '../recoil';
 
 export function useMovie() {
+  const setMovies = useSetRecoilState(movieState);
   const {
     data: movies,
     loading: isLoadedMovie,
     error: loadMovieError,
     httpRequest: getRequest,
   } = useRequest(movieService, {
-    onError: (e) => {
-      //에러 발생 시 실행시킬 에러핸들러 등록.
-    },
+    onError: (e) => {},
     onComplete: (res) => {
-      //요청/응답 성공 시 실행시킬 핸들러 등록. res에 응답정보 담겨 있음.
+      setMovies(res.data);
     },
   });
 
@@ -23,19 +24,12 @@ export function useMovie() {
     },
   });
 
-  const getMovies = () => {
+  const getMovies = async () => {
     getRequest(GET, '');
   };
 
   const patchMovieById = (id, data) => {
     patchRequest(PATCH, '', id, data);
-  };
-
-  const searchMovies = (word) => {
-    getRequest(GET, `?q=${word}`);
-  };
-  const searchLikedMovies = () => {
-    getRequest(GET, '?like=true');
   };
 
   return {
@@ -44,7 +38,5 @@ export function useMovie() {
     loadMovieError,
     getMovies,
     patchMovieById,
-    searchMovies,
-    searchLikedMovies,
   };
 }
