@@ -1,7 +1,6 @@
-import React, { useState, useEffect, useRef } from 'react';
-import { useMovieModel } from '../../models/useMovieModel';
-import { useRecoilState } from 'recoil';
-import { keywordState } from '../../recoil';
+import React, { useState, useEffect } from 'react';
+import { useRecoilValue } from 'recoil';
+import { keywordState, movieState, searchSelector } from '../../recoil';
 import styled from 'styled-components';
 import { theme } from '../../utils/constants/theme';
 import Card from '../../components/Card';
@@ -10,18 +9,17 @@ import Detail from '../detail';
 import useInfiniteScroll from '../../hooks/useInfiniteScroll';
 
 export default function Main() {
-  const { movies, getMovies, searchMovies, patchMovieById } = useMovieModel();
-  const [selectedMovie, setSelectedMovie] = useState(null);
-  const [keyword] = useRecoilState(keywordState);
+  const keyword = useRecoilValue(keywordState);
+  const movies = useRecoilValue(searchSelector(movieState));
+
   const duration = 500;
   const { isOpen, isFadeIn, openModal, closeModal } = useModal(duration);
+  const [selectedMovie, setSelectedMovie] = useState(null);
+
   const { targetRef, initShowNum, showNum } = useInfiniteScroll();
 
   useEffect(() => {
-    if (keyword !== '') {
-      initShowNum();
-      searchMovies(keyword);
-    }
+    initShowNum();
   }, [keyword]);
 
   const handleCardClick = (movieId) => {
@@ -40,7 +38,6 @@ export default function Main() {
 
   return (
     <>
-      {isEmpty && <EmptyContainer>영화 검색을 해주세요.</EmptyContainer>}
       {!isEmpty && (
         <>
           <Container>
