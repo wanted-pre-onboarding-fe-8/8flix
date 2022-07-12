@@ -23,23 +23,11 @@ export const searchSelector = selectorFamily({
   get:
     (movieSelector) =>
     ({ get }) => {
-      const keyword = get(keywordState);
       const movies = get(movieSelector);
+      const keyword = get(keywordState);
       if (keyword === '') return movies;
-      if (keyword.includes('[')) return [];
 
-      const regexTitle = new RegExp(`${keyword}`, 'i');
-      return movies.filter(({ title }) => regexTitle.test(title)).sort();
-    },
-});
-
-export const sortSelector = selectorFamily({
-  key: 'sortSelector',
-  get:
-    ({ movieSelector, order }) =>
-    ({ get }) => {
-      const movies = [...get(movieSelector)];
-      return movies.sort((a, b) => b[order] - a[order]);
+      return searchMovieByTitle(movies, keyword);
     },
 });
 
@@ -48,15 +36,29 @@ export const recommendsSelector = selectorFamily({
   get:
     (movieSelector) =>
     ({ get }) => {
+      const movies = get(movieSelector);
       const keyword = get(keywordState);
       if (keyword === '') return [];
-      if (keyword.includes('[')) return [];
 
-      const movies = get(movieSelector);
-      const regexTitle = new RegExp(`${keyword}`, 'i');
-      const searchedMovies = movies
-        .filter(({ title }) => regexTitle.test(title))
-        .sort();
+      const searchedMovies = searchMovieByTitle(movies, keyword);
       return searchedMovies.map(({ title }) => title);
+    },
+});
+
+function searchMovieByTitle(movies, keyword) {
+  const regexBan = /[[()+?]/g;
+  if (regexBan.test(keyword)) return [];
+
+  const regexTitle = new RegExp(`${keyword}`, 'i');
+  return movies.filter(({ title }) => regexTitle.test(title)).sort();
+}
+
+export const sortSelector = selectorFamily({
+  key: 'sortSelector',
+  get:
+    ({ movieSelector, order }) =>
+    ({ get }) => {
+      const movies = [...get(movieSelector)];
+      return movies.sort((a, b) => b[order] - a[order]);
     },
 });
