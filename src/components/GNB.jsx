@@ -21,7 +21,7 @@ export default function GNB() {
     <Wrapper>
       <Navigation>
         <Section>
-          <RouterLink to="/">
+          <RouterLink to="/" onClick={() => setKeyword('')}>
             <Logo src={LOGO_URL + 'Logo_GNB.png'} />
           </RouterLink>
         </Section>
