@@ -21,38 +21,14 @@ export default function GNB() {
     setKeyword('');
   };
 
-  function MobileNavigation() {
-    return (
-      <MobileNav>
-        <section>
-          <Logo src={LOGO_URL + 'Logo_GNB.png'} />
-          <TabLink to="my-list">즐겨찾기</TabLink>
-        </section>
-        <section>
-          <SearchBar onSubmit={handleSubmit} isRadius={keyword}>
-            <input
-              placeholder="🔍 영화 검색"
-              onChange={handleChange}
-              value={keyword}
-            />
-          </SearchBar>
-        </section>
-      </MobileNav>
-    );
-  }
-
   return (
     <Wrapper>
       <Navigation>
-        <Section>
-          <RouterLink to="/">
-            <Logo src={LOGO_URL + 'Logo_GNB.png'} />
-          </RouterLink>
-        </Section>
-        <SearchDiv>
-          <Div>
-            <SearchBar>
-              <input
+        <Logo src={LOGO_URL + 'Logo_GNB.png'} />
+        <SearchBarContainer>
+          <InputControl>
+            <SearchBar onSubmit={handleSubmit} isRadius={keyword}>
+              <SearchInput
                 placeholder="🔍 영화 검색"
                 onChange={handleChange}
                 value={keyword}
@@ -63,117 +39,86 @@ export default function GNB() {
             <Button onClick={() => setKeyword('')}>
               <FaTrash />
             </Button>
-          </Div>
-          <AutoComplete isActive={isInputFocused} />
-        </SearchDiv>
-        <Section>
-          <TabLink to="my-list">즐겨찾기</TabLink>
-        </Section>
+          </InputControl>
+          <AutoCompleteContainer>
+            <AutoComplete />
+          </AutoCompleteContainer>
+        </SearchBarContainer>
+        <TabLink to="my-list">
+          <TextBox>즐겨찾기</TextBox>
+        </TabLink>
       </Navigation>
-      <MobileNavigation />
     </Wrapper>
   );
 }
 
-const MobileNav = styled.nav`
-  display: none;
-  width: 100%;
-  @media ${theme.deviceSize.mobile} {
-    display: flex;
-    flex-direction: column;
-  }
-`;
-
-const Wrapper = styled.nav`
-  display: flex;
+const Wrapper = styled.header`
   background-color: #141414;
-  width: 100%;
-  padding: 10px;
   position: sticky;
-  top: 0;
-  min-width: 320px;
   z-index: 1;
 `;
 
-const Navigation = styled.div`
-  box-sizing: border-box;
-  height: 100%;
+const Navigation = styled.nav`
   width: 100%;
+  min-width: 320px;
   max-width: 1200px;
   margin: 0 auto;
-  display: flex;
-  flex-shrink: 1;
-  justify-content: center;
-  align-items: center;
-  &:first-child {
-    padding-left: 0.5rem;
-  }
-  &:last-child {
-    padding-right: 1rem;
-  }
+  padding: 10px;
+  display: grid;
+  grid-template-columns: auto 400px auto;
   @media ${theme.deviceSize.mobile} {
-    display: none;
-    justify-content: space-between;
-    padding: 0;
-    gap: 15px;
-  }
-`;
-
-const Section = styled.div`
-  flex: 1 0 127px;
-  @media ${theme.deviceSize.mobile} {
-    flex: 0 0 80px;
   }
 `;
 
 const Logo = styled.img`
   height: 2rem;
+  align-self: center;
   &:hover {
     cursor: pointer;
   }
 `;
 
-const TabLink = styled(RouterLink)`
-  display: block;
-  width: fit-content;
-  height: 100%;
-  color: white;
-  text-decoration: none;
-  text-align: right;
-  float: right;
-  @media ${theme.deviceSize.mobile} {
-    width: 60px;
-  }
-`;
-
-const SearchBar = styled(Section).attrs({ as: 'form' })`
-  & > input {
-    height: 30px;
-    padding-left: 10px;
-    width: -webkit-fill-available;
-    @media ${theme.deviceSize.mobile} {
-      width: 100%;
-    }
-  }
-`;
-
-const SearchDiv = styled.div`
-  height: inherit;
-  padding-top: 3px;
-  width: 400px;
-  @media ${theme.deviceSize.mobile} {
-    width: 200px;
-  }
-`;
-
-const Div = styled.div`
+const SearchBarContainer = styled.div`
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
+  align-self: center;
 `;
-
+const InputControl = styled.div`
+  display: flex;
+  align-items: center;
+  width: 400px;
+  height: 30px;
+`;
+const SearchBar = styled.form`
+  width: 100%;
+  height: 100%;
+`;
+const SearchInput = styled.input`
+  width: 100%;
+  height: 100%;
+`;
 const Button = styled.button`
   outline: 0;
   border: 0;
+  height: 30px;
   background-color: #fff;
   cursor: pointer;
+`;
+
+const AutoCompleteContainer = styled.section`
+  position: relative;
+  width: 100%;
+`;
+
+const TabLink = styled(RouterLink)`
+  text-decoration: none;
+  color: #fff;
+  display: flex;
+  justify-content: end;
+  align-items: center;
+  font-size: 1.2rem;
+`;
+const TextBox = styled.span`
+  padding: 0.5rem;
+  border: 1px solid #fff;
 `;

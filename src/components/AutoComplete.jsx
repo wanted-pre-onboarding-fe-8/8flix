@@ -46,9 +46,8 @@ export function AutoComplete({ isActive }) {
 
 const AutoCompleteDiv = styled.div`
   margin: -1px;
-  @media ${theme.deviceSize.mobile} {
-    width: 202px;
-  }
+  position: absolute;
+  width: 100%;
 `;
 
 const Ul = styled.ul`
