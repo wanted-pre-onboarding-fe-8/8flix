@@ -1,91 +1,36 @@
-import React, { useEffect } from 'react';
-import { useMovieModel } from '../models/useMovieModel';
-import { useRecoilState } from 'recoil';
-import { keywordState } from '../recoil';
+import React from 'react';
+import { useRecoilValue, useSetRecoilState } from 'recoil';
+import {
+  keywordState,
+  movieState,
+  myListSelector,
+  recommendsSelector,
+} from '../recoil';
 import styled from 'styled-components';
 import { theme } from '../utils/constants/theme';
+import { useLocation } from 'react-router-dom';
 
-export function AutoComplete() {
-  const { lists, getMoviesByLists } = useMovieModel();
-  const [keyword, setKeyword] = useRecoilState(keywordState);
-  const [recommendList, setRecommendList] = React.useState([]);
-  const [isActive, setIsActive] = React.useState(false);
-  const autoCompleteRef = React.useRef();
+export function AutoComplete({ isActive }) {
+  const { pathname } = useLocation();
+  const isMain = pathname === '/';
 
-  useEffect(() => {
-    getMoviesByLists();
-  }, []);
+  const movies = isMain ? movieState : myListSelector;
+  const recommends = useRecoilValue(recommendsSelector(movies));
 
-  useEffect(() => {
-    onChange(keyword);
-    if (keyword === '') {
-      setIsActive(false);
-    } else {
-      setIsActive(true);
-    }
-  }, [keyword]);
-
-  useEffect(() => {
-    if (recommendList.length > 0) {
-      setIsActive(true);
-    } else if (recommendList === null) {
-      setIsActive(false);
-    }
-  }, [recommendList]);
-
-  const onChange = (keyword) => {
-    const banRegExp = /[[]/gi;
-    if (banRegExp.test(keyword)) {
-      setKeyword('');
-      return;
-    }
-    let filterList = [];
-    if (keyword !== '') {
-      const regex = new RegExp(`${keyword}`, 'i');
-      filterList = lists.filter((list) => regex.test(list)).sort(sortASC);
-      setRecommendList(filterList);
-    }
-  };
-
-  const onClick = (event) => {
+  const setKeyword = useSetRecoilState(keywordState);
+  const onMouseDown = (event) => {
     const { innerText } = event.target;
     setKeyword(innerText);
-    setIsActive(false);
-  };
-
-  const sortASC = (a, b) => {
-    let tempA = a.toUpperCase();
-    let tempB = b.toUpperCase();
-    if (tempA < tempB) {
-      return -1;
-    }
-    if (tempA > tempB) {
-      return 1;
-    }
-    return 0;
-  };
-
-  useEffect(() => {
-    window.addEventListener('click', handleClickOutside);
-    return () => {
-      window.removeEventListener('click', handleClickOutside);
-    };
-  }, []);
-
-  const handleClickOutside = (event) => {
-    if (!autoCompleteRef.current) return;
-    const result = autoCompleteRef.current.contains(event.target);
-    setIsActive(result);
   };
 
   return (
     <>
       {isActive && (
-        <AutoCompleteDiv ref={autoCompleteRef}>
+        <AutoCompleteDiv>
           <Ul>
-            {recommendList.length !== 0 ? (
-              recommendList.map((recommend, index) => (
-                <Li key={index} onClick={onClick}>
+            {recommends.length !== 0 ? (
+              recommends.map((recommend, index) => (
+                <Li key={index} onMouseDown={onMouseDown}>
                   <span>{recommend}</span>
                 </Li>
               ))

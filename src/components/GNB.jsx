@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link as RouterLink } from 'react-router-dom';
 import styled from 'styled-components';
-import { PUBLIC_PATH, LOGO_URL } from '../utils/constants';
+import { LOGO_URL } from '../utils/constants';
 import { theme } from '../utils/constants/theme';
 import { useRecoilState } from 'recoil';
 import { keywordState } from '../recoil';
@@ -10,44 +10,37 @@ import { FaTrash } from 'react-icons/fa';
 
 export default function GNB() {
   const [keyword, setKeyword] = useRecoilState(keywordState);
-
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    const [input] = event.target.elements;
-    setKeyword(input.value);
-  };
+  const [isInputFocused, setIsInputFocused] = useState(false);
 
   const handleChange = (event) => {
     const { value } = event.target;
     setKeyword(value);
   };
 
-  const handleClear = () => {
-    setKeyword('');
-  };
-
   return (
     <Wrapper>
       <Navigation>
         <Section>
-          <a href="/">
+          <RouterLink to="/">
             <Logo src={LOGO_URL + 'Logo_GNB.png'} />
-          </a>
+          </RouterLink>
         </Section>
         <SearchDiv>
           <Div>
-            <SearchBar onSubmit={handleSubmit} isRadius={keyword}>
+            <SearchBar>
               <input
                 placeholder="🔍 영화 검색"
                 onChange={handleChange}
                 value={keyword}
+                onFocus={() => setIsInputFocused(true)}
+                onBlur={() => setIsInputFocused(false)}
               />
             </SearchBar>
-            <Button onClick={handleClear}>
+            <Button onClick={() => setKeyword('')}>
               <FaTrash />
             </Button>
           </Div>
-          <AutoComplete />
+          <AutoComplete isActive={isInputFocused} />
         </SearchDiv>
         <Section>
           <TabLink to="my-list">즐겨찾기</TabLink>
