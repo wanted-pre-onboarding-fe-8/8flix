@@ -1,7 +1,9 @@
 import { useEffect, useState } from 'react';
+import { useRecoilState } from 'recoil';
+import { themeState } from '../recoil';
 
 function useTheme() {
-  const [isLightMode, setIsLightMode] = useState(true);
+  const [isLightMode, setIsLightMode] = useRecoilState(themeState);
 
   const detectDarkMode = () =>
     window.matchMedia &&
