@@ -41,7 +41,7 @@ export function AutoComplete() {
     }
     let filterList = [];
     if (keyword !== '') {
-      const regex = new RegExp(`^${keyword}`, 'i');
+      const regex = new RegExp(`${keyword}`, 'i');
       filterList = lists.filter((list) => regex.test(list)).sort(sortASC);
       setRecommendList(filterList);
     }
@@ -116,7 +116,6 @@ const Ul = styled.ul`
   border-left: 1px solid gray;
   border-bottom: 1px solid gray;
   border-top: 1px solid gray;
-  /* border-radius: 0px 0px 8px 8px; */
 `;
 
 const Li = styled.li`
