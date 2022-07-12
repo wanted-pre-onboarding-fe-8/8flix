@@ -1,17 +1,18 @@
 import React, { useState, useEffect } from 'react';
-import { useMovieModel } from '../../models/useMovieModel';
-import useInfiniteScroll from '../../hooks/useInfiniteScroll';
-import { useRecoilState } from 'recoil';
-import { keywordState } from '../../recoil';
+import { useRecoilValue } from 'recoil';
+import { keywordState, movieState, searchSelector } from '../../recoil';
 import styled from 'styled-components';
 import { theme } from '../../utils/constants/theme';
 import Card from '../../components/Card';
 import { useModal, Modal } from '../../components/Modal';
 import Detail from '../detail';
+import useInfiniteScroll from '../../hooks/useInfiniteScroll';
+import { useMovie } from '../../models/useMovie';
 
 export default function Main() {
-  const { movies, searchMovies, patchMovieById } = useMovieModel();
-  const [keyword] = useRecoilState(keywordState);
+  const { patchMovieById } = useMovie();
+  const keyword = useRecoilValue(keywordState);
+  const movies = useRecoilValue(searchSelector(movieState));
 
   const duration = 500;
   const { isOpen, isFadeIn, openModal, closeModal } = useModal(duration);
