@@ -104,7 +104,7 @@ const Contents = styled.div`
 
 const Title = styled.h3`
   margin: 0;
-  color: white;
+  color: ${({ theme }) => theme.text.strong};
 `;
 
 const InfoBox = styled.div`
