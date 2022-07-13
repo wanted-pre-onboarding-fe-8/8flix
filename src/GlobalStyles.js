@@ -1,18 +1,6 @@
 import { createGlobalStyle } from 'styled-components';
 
 const GlobalStyles = createGlobalStyle`
-<<<<<<< HEAD
- html, body {
-     padding: 0;
-     margin: 0;
-     background-color: black;
- }
- * {
-   box-sizing:border-box;
-   outline:none;
-   border:none;
- }
-=======
 body {
   padding: 0;
   margin: 0;
@@ -30,7 +18,6 @@ body {
   border: none;
 }
 
->>>>>>> 3503e3d (chore: pretendard 폰트 설치)
 `;
 
 export default GlobalStyles;
