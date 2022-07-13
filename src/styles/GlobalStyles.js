@@ -1,7 +1,6 @@
 import { createGlobalStyle } from 'styled-components';
 
 const GlobalStyles = createGlobalStyle`
-<<<<<<< HEAD
 
 html,body{
 
@@ -15,13 +14,6 @@ html,body{
         sans-serif;
 }
 
-=======
- html, body {
-     padding: 0;
-     margin: 0;
-     background-color: ${({ theme }) => theme.bg.primary};
- }
->>>>>>> 472d64e (feat: 다크모드, 라이트모드 theme 추가 및 적용)
  * {
    box-sizing:border-box;
    outline:none;
