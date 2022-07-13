@@ -60,7 +60,9 @@ export default function Main() {
             duration={duration}
             closeModal={closeModal}
           >
-            {selectedMovie && <Detail movie={selectedMovie} />}
+            {selectedMovie && (
+              <Detail movie={selectedMovie} closeModal={closeModal} />
+            )}
           </Modal>
         </>
       )}
