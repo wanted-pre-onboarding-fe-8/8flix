@@ -10,7 +10,7 @@ import { theme } from '../../utils/constants/theme';
 import { useModal, Modal } from '../../components/Modal';
 import Detail from '../detail';
 import Card from '../../components/Card';
-import { useMovie } from '../../models/useMovie';
+import { useMovie } from '../../hooks/useMovie';
 
 const ORDER_ID = 'id';
 const ORDER_RATING = 'rating';

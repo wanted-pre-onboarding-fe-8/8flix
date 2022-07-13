@@ -1,4 +1,4 @@
-import { useRequest } from '../http/useRequest';
+import { useRequest } from './useRequest';
 import { GET, PATCH, POST } from '../utils/constants/request';
 import { movieService } from '../services/movieService';
 import { useSetRecoilState } from 'recoil';

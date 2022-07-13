@@ -12,7 +12,7 @@ import Card from '../../components/Card';
 import { useModal, Modal } from '../../components/Modal';
 import Detail from '../detail';
 import useInfiniteScroll from '../../hooks/useInfiniteScroll';
-import { useMovie } from '../../models/useMovie';
+import { useMovie } from '../../hooks/useMovie';
 
 const ORDER_ID = 'id';
 const ORDER_RATING = 'rating';
