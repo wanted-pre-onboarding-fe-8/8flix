@@ -1,7 +1,13 @@
 import React from 'react';
 import styled from 'styled-components';
+<<<<<<< HEAD
 import { AiFillStar, AiOutlineStar } from 'react-icons/ai';
 import { RiArrowDownSLine } from 'react-icons/ri';
+=======
+import { theme } from '../utils/constants/theme';
+import { AiFillHeart, AiOutlineHeart } from 'react-icons/ai';
+import { BiDetail } from 'react-icons/bi';
+>>>>>>> 82c5a0c (style: 태블릿, 모바일 사이즈에 오버레이 이펙트 적용)
 
 export default function MyListCard({
   movie,
@@ -63,19 +69,58 @@ const Figure = styled.figure`
   flex-grow: 1;
   margin: 0;
   overflow: hidden;
+<<<<<<< HEAD
   border-radius: 5px;
   &:hover {
     > :nth-child(1) {
       display: block;
       z-index: 3;
+=======
+  @media ${theme.deviceSize.pc} {
+    &:hover {
+      > :nth-child(1) {
+        display: block;
+        z-index: 3;
+      }
+      > :nth-child(2) {
+        z-index: 2;
+      }
+      > * {
+        position: absolute;
+        transform: scale(1.2);
+        cursor: pointer;
+      }
+>>>>>>> 82c5a0c (style: 태블릿, 모바일 사이즈에 오버레이 이펙트 적용)
     }
-    > :nth-child(2) {
-      z-index: 2;
+  }
+  @media ${theme.deviceSize.tablet} {
+    &:hover {
+      > :nth-child(1) {
+        display: block;
+        z-index: 3;
+      }
+      > :nth-child(2) {
+        z-index: 2;
+      }
+      > * {
+        position: absolute;
+        cursor: pointer;
+      }
     }
-    > * {
-      position: absolute;
-      transform: scale(1.2);
-      cursor: pointer;
+  }
+  @media ${theme.deviceSize.mobile} {
+    &:hover {
+      > :nth-child(1) {
+        display: block;
+        z-index: 3;
+      }
+      > :nth-child(2) {
+        z-index: 2;
+      }
+      > * {
+        position: absolute;
+        cursor: pointer;
+      }
     }
   }
 `;
@@ -183,6 +228,16 @@ const CardButton = styled.button`
   font-weight: 700;
   text-align: center;
   padding: 0 8px;
+  @media ${theme.deviceSize.mobile} {
+    font-size: 18px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    word-break: break-word;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    padding: 0 4px;
+  }
 `;
 
 const Controls = styled.div`
