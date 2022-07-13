@@ -12,8 +12,8 @@ export default function MyListCard({
     <CardWrapper>
       <Figure>
         <Image src={movie.large_cover_image} alt={movie.title} />
-      </Figure>
-      <Content>
+        {/* </Figure> */}
+        {/* <Content>
         <Title>{movie.title}</Title>
         <Description>{movie.description_full}</Description>
         <Genres>
@@ -29,7 +29,22 @@ export default function MyListCard({
             <RiArrowDownSLine />
           </CardButton>
         </CardButtonWrapper>
-      </Content>
+      </Content> */}
+        <Overlay>
+          <OverlayInner>
+            <Title>{movie.title}</Title>
+            <Controls>
+              <LikeBox onClick={() => handleLikeClick(movie.id, movie.like)}>
+                {movie.like ? <AiFillStar /> : <AiOutlineStar />}
+              </LikeBox>
+              <DetailBox onClick={() => handleCardClick(movie.id)}>
+                <RiArrowDownSLine />
+              </DetailBox>
+            </Controls>
+          </OverlayInner>
+        </Overlay>
+        <Image src={movie.large_cover_image} alt={movie.title} />
+      </Figure>
     </CardWrapper>
   );
 }
@@ -44,23 +59,49 @@ const CardWrapper = styled.div`
   border-radius: 5px;
   position: relative;
 `;
-
 const Figure = styled.figure`
   flex-grow: 1;
   margin: 0;
   overflow: hidden;
   border-radius: 5px;
+  &:hover {
+    > :nth-child(1) {
+      display: block;
+      z-index: 3;
+    }
+    > :nth-child(2) {
+      z-index: 2;
+    }
+    > * {
+      position: absolute;
+      transform: scale(1.2);
+      cursor: pointer;
+    }
+  }
 `;
-
 const Image = styled.img`
   width: 100%;
   height: 100%;
   transition: 200ms;
-  cursor: pointer;
+`;
 
-  &:hover {
-    transform: scale(1.05);
-  }
+const Overlay = styled.div`
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  cursor: pointer;
+`;
+
+const OverlayInner = styled.div`
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
 `;
 
 const Content = styled.div`
@@ -132,4 +173,20 @@ const CardButton = styled.button`
   & > * {
     font-size: 24px;
   }
+  color: ghostwhite;
+  font-size: 24px;
+  font-weight: 700;
+  text-align: center;
+  padding: 0 8px;
 `;
+
+const Controls = styled.div`
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: flex-end;
+  padding: 0 8px;
+  padding-bottom: 16px;
+`;
+const LikeBox = styled.div``;
+const DetailBox = styled.div``;
