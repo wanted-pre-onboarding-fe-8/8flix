@@ -1,13 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
-<<<<<<< HEAD
 import { AiFillStar, AiOutlineStar } from 'react-icons/ai';
 import { RiArrowDownSLine } from 'react-icons/ri';
-=======
 import { theme } from '../utils/constants/theme';
-import { AiFillHeart, AiOutlineHeart } from 'react-icons/ai';
-import { BiDetail } from 'react-icons/bi';
->>>>>>> 82c5a0c (style: 태블릿, 모바일 사이즈에 오버레이 이펙트 적용)
 
 export default function MyListCard({
   movie,
@@ -18,8 +13,8 @@ export default function MyListCard({
     <CardWrapper>
       <Figure>
         <Image src={movie.large_cover_image} alt={movie.title} />
-        {/* </Figure> */}
-        {/* <Content>
+      </Figure>
+      <Content>
         <Title>{movie.title}</Title>
         <Description>{movie.description_full}</Description>
         <Genres>
@@ -35,8 +30,8 @@ export default function MyListCard({
             <RiArrowDownSLine />
           </CardButton>
         </CardButtonWrapper>
-      </Content> */}
-        <Overlay>
+      </Content>
+      {/* <Overlay>
           <OverlayInner>
             <Title>{movie.title}</Title>
             <Controls>
@@ -49,8 +44,7 @@ export default function MyListCard({
             </Controls>
           </OverlayInner>
         </Overlay>
-        <Image src={movie.large_cover_image} alt={movie.title} />
-      </Figure>
+        <Image src={movie.large_cover_image} alt={movie.title} /> */}
     </CardWrapper>
   );
 }
@@ -69,13 +63,6 @@ const Figure = styled.figure`
   flex-grow: 1;
   margin: 0;
   overflow: hidden;
-<<<<<<< HEAD
-  border-radius: 5px;
-  &:hover {
-    > :nth-child(1) {
-      display: block;
-      z-index: 3;
-=======
   @media ${theme.deviceSize.pc} {
     &:hover {
       > :nth-child(1) {
@@ -90,7 +77,6 @@ const Figure = styled.figure`
         transform: scale(1.2);
         cursor: pointer;
       }
->>>>>>> 82c5a0c (style: 태블릿, 모바일 사이즈에 오버레이 이펙트 적용)
     }
   }
   @media ${theme.deviceSize.tablet} {
@@ -160,7 +146,6 @@ const Content = styled.div`
 `;
 
 const Title = styled.p`
-<<<<<<< HEAD
   margin: 0;
   margin-top: 6px;
   font-size: 14px;
@@ -219,10 +204,8 @@ const CardButton = styled.button`
   & > * {
     font-size: 24px;
   }
-=======
   position: absolute;
   top: 25%;
->>>>>>> c4be284 (style: 카드 호버 상태에 보여주는 제목 위치 변경)
   color: ghostwhite;
   font-size: 24px;
   font-weight: 700;
