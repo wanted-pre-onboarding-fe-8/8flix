@@ -103,6 +103,7 @@ const Title = styled.h1`
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  color: white;
 `;
 const ControlWrapper = styled.div`
   width: 100%;
@@ -116,8 +117,8 @@ const Button = styled.button`
   justify-content: center;
   width: 3rem;
   height: 3rem;
-  color: white;
-  background-color: #181717;
+  color: ghostwhite;
+  background-color: #171717;
   border: 1px solid gray;
   border-radius: 50%;
   font-size: 24px;

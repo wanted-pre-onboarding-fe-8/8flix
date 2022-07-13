@@ -5,6 +5,11 @@ export const keywordState = atom({
   default: '',
 });
 
+export const themeState = atom({
+  key: 'isLightMode',
+  default: true,
+});
+
 export const movieState = atom({
   key: 'movies',
   default: [],
