@@ -1,7 +1,7 @@
 import React from 'react';
 import { Routes, Route } from 'react-router-dom';
-import Main from './pages/main';
-import MyList from './pages/myList';
+import Main from '../pages/main';
+import MyList from '../pages/myList';
 
 export default function Router() {
   return (

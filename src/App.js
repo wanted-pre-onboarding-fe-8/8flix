@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import GNB from './components/GNB';
-import Router from './Router';
+import Router from './routes/Router';
 import { useMovie } from './models/useMovie';
 import ToggleButton from './components/ToggleButton';
 
