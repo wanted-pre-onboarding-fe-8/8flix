@@ -47,7 +47,6 @@ const CardWrapper = styled.div`
         visibility: visible;
       }
       > * {
-        position: absolute;
         transform: scale(1.15);
         cursor: pointer;
       }
@@ -59,7 +58,6 @@ const CardWrapper = styled.div`
         visibility: visible;
       }
       > * {
-        position: absolute;
         cursor: pointer;
       }
     }
@@ -70,7 +68,6 @@ const CardWrapper = styled.div`
         visibility: visible;
       }
       > * {
-        position: absolute;
         cursor: pointer;
       }
     }
