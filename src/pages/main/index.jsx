@@ -99,7 +99,7 @@ const EmptyContainer = styled.div`
 const Container = styled.main`
   max-width: 1200px;
   margin: auto;
-  padding-top: 1.5rem;
+  padding-top: 4rem;
 `;
 const MovieSection = styled.section`
   display: grid;
