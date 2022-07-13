@@ -32,7 +32,7 @@ export const searchSelector = selectorFamily({
       const keyword = get(keywordState);
       if (keyword === '') return movies;
 
-      return searchMovieByTitle(movies, keyword);
+      return searchMovie(movies, keyword);
     },
 });
 
@@ -45,17 +45,36 @@ export const recommendsSelector = selectorFamily({
       const keyword = get(keywordState);
       if (keyword === '') return [];
 
-      const searchedMovies = searchMovieByTitle(movies, keyword);
-      return searchedMovies.map(({ title }) => title);
+      return searchMovie(movies, keyword).map(({ title }) => title);
     },
 });
 
-function searchMovieByTitle(movies, keyword) {
+function searchMovie(movies, keyword) {
   const regexBan = /[[()+?]/g;
   if (regexBan.test(keyword)) return [];
 
   const regexTitle = new RegExp(`${keyword}`, 'i');
-  return movies.filter(({ title }) => regexTitle.test(title)).sort();
+
+  const byTitle = movies.filter(({ title }) => regexTitle.test(title));
+  const byDescription = movies.filter(({ description_full }) =>
+    regexTitle.test(description_full)
+  );
+
+  const totalMovies = [...byTitle, ...byDescription];
+
+  const result = [];
+  for (const movie of totalMovies) {
+    let has = false;
+    for (const { id } of result) {
+      if (movie.id === id) {
+        has = true;
+        break;
+      }
+    }
+    if (!has) result.push(movie);
+  }
+
+  return result;
 }
 
 export const sortSelector = selectorFamily({
