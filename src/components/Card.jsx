@@ -115,6 +115,7 @@ const Content = styled.div`
 `;
 
 const Title = styled.p`
+<<<<<<< HEAD
   margin: 0;
   margin-top: 6px;
   font-size: 14px;
@@ -173,6 +174,10 @@ const CardButton = styled.button`
   & > * {
     font-size: 24px;
   }
+=======
+  position: absolute;
+  top: 25%;
+>>>>>>> c4be284 (style: 카드 호버 상태에 보여주는 제목 위치 변경)
   color: ghostwhite;
   font-size: 24px;
   font-weight: 700;
