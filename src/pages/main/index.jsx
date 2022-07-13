@@ -99,6 +99,7 @@ export default function Main() {
     </OuterContainer>
   );
 }
+
 const OuterContainer = styled.div``;
 
 const Divider = styled.div`
