@@ -101,10 +101,10 @@ const MenuSection = styled.section`
 `;
 const Button = styled.button`
   background-color: transparent;
-  color: ghostwhite;
+  color: ${({ theme }) => theme.text.medium};
   font-size: 18px;
   border-radius: 4px;
-  border: #fff solid 1px;
+  border: ${({ theme }) => theme.text.medium} solid 1px;
   cursor: pointer;
 `;
 

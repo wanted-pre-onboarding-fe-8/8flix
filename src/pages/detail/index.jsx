@@ -51,8 +51,8 @@ const Wrapper = styled.div`
   min-width: 700px;
   max-width: 700px;
   min-height: 500px;
-  background-color: #1b1b1b;
-  color: #7b7b7b;
+  background-color: ${({ theme }) => theme.bg.primary};
+  color: ${({ theme }) => theme.text.medium};
   border-radius: 10px;
 
   @media ${theme.deviceSize.tablet} {

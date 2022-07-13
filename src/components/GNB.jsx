@@ -53,6 +53,11 @@ export default function GNB() {
 }
 
 const Wrapper = styled.header`
+  display: flex;
+  height: 57px;
+  background-color: ${({ theme }) => theme.bg.secondary};
+  width: 100%;
+  padding: 10px;
   position: sticky;
   padding: 1rem;
   z-index: 1;
@@ -108,7 +113,7 @@ const SearchInput = styled.input`
   width: 100%;
   height: 100%;
   background-color: transparent;
-  color: #fff;
+  color: ${({ theme }) => theme.text.medium};
 `;
 const Button = styled.button`
   box-sizing: border-box;
@@ -118,7 +123,7 @@ const Button = styled.button`
   background-color: transparent;
 `;
 const StyledFaTrash = styled(FaTrash)`
-  color: #fff;
+  color: ${({ theme }) => theme.text.medium};
 `;
 
 const AutoCompleteContainer = styled.section`
@@ -128,7 +133,7 @@ const AutoCompleteContainer = styled.section`
 
 const TabLink = styled(RouterLink)`
   text-decoration: none;
-  color: #fff;
+  color: ${({ theme }) => theme.text.medium};
   display: flex;
   justify-content: end;
   align-items: center;
