@@ -50,7 +50,7 @@ export const recommendsSelector = selectorFamily({
 });
 
 function searchMovie(movies, keyword) {
-  const regexBan = /[[()+?]/g;
+  const regexBan = /[[()+?\\]/g;
   if (regexBan.test(keyword)) return [];
 
   const regexTitle = new RegExp(`${keyword}`, 'i');
