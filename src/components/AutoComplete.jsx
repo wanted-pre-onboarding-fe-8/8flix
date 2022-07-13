@@ -5,7 +5,7 @@ import {
   movieState,
   myListSelector,
   recommendsSelector,
-} from '../recoil';
+} from '../store/recoil';
 import styled from 'styled-components';
 import { theme } from '../utils/constants/theme';
 import { useLocation } from 'react-router-dom';

@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { BsSunFill, BsMoonFill } from 'react-icons/bs';
 import { useRecoilState } from 'recoil';
-import { themeState } from '../recoil';
+import { themeState } from '../store/recoil';
 
 function ToggleButton() {
   const [isLightMode, setIsLightMode] = useRecoilState(themeState);

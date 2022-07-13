@@ -1,6 +1,10 @@
 import React, { useState } from 'react';
 import { useRecoilValue } from 'recoil';
-import { myListSelector, searchSelector, sortSelector } from '../../recoil';
+import {
+  myListSelector,
+  searchSelector,
+  sortSelector,
+} from '../../store/recoil';
 import styled from 'styled-components';
 import { theme } from '../../utils/constants/theme';
 import { useModal, Modal } from '../../components/Modal';

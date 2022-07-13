@@ -2,7 +2,7 @@ import { useRequest } from '../http/useRequest';
 import { GET, PATCH, POST } from '../utils/constants/request';
 import { movieService } from '../services/movieService';
 import { useSetRecoilState } from 'recoil';
-import { movieState } from '../recoil';
+import { movieState } from '../store/recoil';
 
 export function useMovie() {
   const setMovies = useSetRecoilState(movieState);

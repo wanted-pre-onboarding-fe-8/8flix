@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import { LOGO_URL } from '../utils/constants';
 import { theme } from '../utils/constants/theme';
 import { useRecoilState } from 'recoil';
-import { keywordState } from '../recoil';
+import { keywordState } from '../store/recoil';
 import { AutoComplete } from './AutoComplete';
 import { FaTrash } from 'react-icons/fa';
 import { debounce } from '../utils/helpers';

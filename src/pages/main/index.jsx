@@ -5,7 +5,7 @@ import {
   movieState,
   searchSelector,
   sortSelector,
-} from '../../recoil';
+} from '../../store/recoil';
 import styled from 'styled-components';
 import { theme } from '../../utils/constants/theme';
 import Card from '../../components/Card';

@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useRecoilState } from 'recoil';
-import { themeState } from '../recoil';
+import { themeState } from '../store/recoil';
 
 function useTheme() {
   const [isLightMode, setIsLightMode] = useRecoilState(themeState);
