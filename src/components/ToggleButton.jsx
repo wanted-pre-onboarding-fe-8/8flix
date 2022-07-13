@@ -14,6 +14,7 @@ function ToggleButton() {
         onChange={(event) => {
           setIsLightMode(event.target.checked);
         }}
+        checked={isLightMode}
       />
       <Label htmlFor="checkbox">
         <BsSunFill color="pink" />
