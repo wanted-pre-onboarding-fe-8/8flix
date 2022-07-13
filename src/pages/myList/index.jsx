@@ -91,7 +91,7 @@ const Divider = styled.div`
   min-width: 350;
   max-width: 1200px;
   height: 1px;
-  background-color: #fff;
+  background-color: ${({ theme }) => theme.text.strong};
   margin: 0 auto;
 `;
 
@@ -101,10 +101,10 @@ const MenuSection = styled.section`
 `;
 const Button = styled.button`
   background-color: transparent;
-  color: ${({ theme }) => theme.text.medium};
+  color: ${({ theme }) => theme.text.strong};
   font-size: 18px;
   border-radius: 4px;
-  border: ${({ theme }) => theme.text.medium} solid 1px;
+  border: ${({ theme }) => theme.text.strong} solid 1px;
   cursor: pointer;
 `;
 

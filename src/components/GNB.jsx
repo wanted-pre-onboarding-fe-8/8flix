@@ -113,7 +113,7 @@ const SearchInput = styled.input`
   width: 100%;
   height: 100%;
   background-color: transparent;
-  color: ${({ theme }) => theme.text.medium};
+  color: ${({ theme }) => theme.text.strong};
 `;
 const Button = styled.button`
   box-sizing: border-box;
@@ -133,7 +133,7 @@ const AutoCompleteContainer = styled.section`
 
 const TabLink = styled(RouterLink)`
   text-decoration: none;
-  color: ${({ theme }) => theme.text.medium};
+  color: ${({ theme }) => theme.text.strong};
   display: flex;
   justify-content: end;
   align-items: center;
