@@ -45,7 +45,6 @@ export default function Detail({ movie, closeModal }) {
 }
 
 const Wrapper = styled.div`
-<<<<<<< HEAD
   margin: 0 2rem;
   margin-bottom: 3rem;
   min-width: 700px;
@@ -54,12 +53,6 @@ const Wrapper = styled.div`
   background-color: #1b1b1b;
   color: #7b7b7b;
   border-radius: 10px;
-=======
-  max-width: 600px;
-  border-radius: 25px;
-  background-color: #141414;
-  overflow: hidden;
->>>>>>> e63783c (chore: 상세 정보 모달의 영화 제목을 개봉연도 포함한 버전으로 변경)
 
   @media ${theme.deviceSize.tablet} {
     min-width: 700px;
