@@ -42,6 +42,7 @@ const Overlay = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  z-index: 999;
 
   animation: ${(props) => (props.isFadeIn ? fadeIn : fadeOut)};
   animation-duration: ${(props) => `${props.duration + 100}ms`};

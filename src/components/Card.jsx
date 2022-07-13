@@ -38,6 +38,9 @@ const CardWrapper = styled.div`
   > :nth-child(2) {
     z-index: 3;
   }
+  &:hover {
+    z-index: 10;
+  }
   @media ${theme.deviceSize.pc} {
     &:hover {
       > :nth-child(2) {
