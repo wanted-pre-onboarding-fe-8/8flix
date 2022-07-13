@@ -10,20 +10,17 @@ export function cutString(str, maxLength) {
   }
   return str;
 }
-export function getTimeStringByMinute(minutes) {
-  if (minutes === 0) return '0분';
-  const hour = Math.floor(minutes / 60);
-  const minute = minutes % 60;
 
-  let timeString = '';
-  if (hour > 0) {
-    timeString = `${hour}시간 `;
-  } else return `${minutes}분`;
-
-  if (minute > 0) {
-    timeString += `${minute}분`;
-  }
-  return timeString;
+export function debounce(action, delay = 300) {
+  let timer = null;
+  return function (event) {
+    if (timer) {
+      clearTimeout(timer);
+    }
+    timer = setTimeout(function () {
+      action(event);
+    }, delay);
+  };
 }
 
 export function genresToKorean(genres) {
