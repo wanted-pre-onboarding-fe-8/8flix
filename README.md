@@ -9,9 +9,8 @@
 5. [구현](https://github.com/wanted-pre-onboarding-fe-8/8flix#4.-기능-구현-요구사항)
 6. [프로젝트 설치 및 실행](https://github.com/wanted-pre-onboarding-fe-8/8flix#5.-프로젝트-설치-및-실행)
 7. [회의록](https://github.com/wanted-pre-onboarding-fe-8/8flix#6.-회의록)
-8. [프로젝트 결과물]
 
-9. [프로젝트 결과물](https://github.com/wanted-pre-onboarding-fe-8/8flix#8.-프로젝트-결과물)
+8. [프로젝트 결과물](https://github.com/wanted-pre-onboarding-fe-8/8flix#8.-프로젝트-결과물)
 
 ## 1. 프로젝트 소개
 
@@ -168,7 +167,7 @@ $ npm run start
 
 ## 👍검색을 통한 영화 추천 기능
 
-![search](https://raw.githubusercontent.com/ohtaekwon/ohtaekwon/master/img/Week1_2/mylist.png)
+![search](https://raw.githubusercontent.com/ohtaekwon/ohtaekwon/master/img/Week1_2/search.gif)
 
 ## 🔎 상세 페이지
 
