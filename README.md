@@ -159,16 +159,16 @@ $ npm run start
 
 ### 🎬 메인 페이지
 
-![main](https://raw.githubusercontent.com/ohtaekwon/ohtaekwon/master/img/Week1_2/mainpage.png)
+![main](https://raw.githubusercontent.com/ohtaekwon/ohtaekwon/master/img/week1_2/main.png)
 
 ## 💞 즐겨찾기 페이지
 
-![mylist](https://raw.githubusercontent.com/ohtaekwon/ohtaekwon/master/img/Week1_2/mainpage.png)
+![mylist](https://raw.githubusercontent.com/ohtaekwon/ohtaekwon/master/img/week1_2/mylist.png)
 
 ## 👍검색을 통한 영화 추천 기능
 
-![search](https://raw.githubusercontent.com/ohtaekwon/ohtaekwon/master/img/Week1_2/search.gif)
+![search](https://raw.githubusercontent.com/ohtaekwon/ohtaekwon/master/img/week1_2/Search.gif)
 
 ## 🔎 상세 페이지
 
-![detail](https://raw.githubusercontent.com/ohtaekwon/ohtaekwon/master/img/Week1_2/detail.png)
+![detail](https://raw.githubusercontent.com/ohtaekwon/ohtaekwon/master/img/week1_2/detail.png)
