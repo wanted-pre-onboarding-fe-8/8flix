@@ -27,6 +27,7 @@ const grayScale = {
   gray700: '#616161',
   gray800: '#424242',
   gray900: '#212121',
+  netflixBlack: '#141414',
   lightBlack: '#121212',
   trueBlack: '#000',
 };
@@ -67,8 +68,8 @@ export const lightMode = {
 export const darkMode = {
   ...theme,
   bg: {
-    primary: grayScale.gray900,
-    secondary: grayScale.lightBlack,
+    primary: grayScale.netflixBlack,
+    secondary: grayScale.netflixBlack,
   },
   text: {
     xweak: grayScale.gray900,
