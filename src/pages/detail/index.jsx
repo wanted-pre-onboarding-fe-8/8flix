@@ -47,8 +47,8 @@ export default function Detail({ movie, closeModal }) {
 const Wrapper = styled.div`
   margin: 0 2rem;
   margin-bottom: 3rem;
-  min-width: 800px;
-  max-width: 800px;
+  min-width: 700px;
+  max-width: 700px;
   min-height: 500px;
   background-color: #1b1b1b;
   color: #7b7b7b;
@@ -77,7 +77,6 @@ const Figure = styled.figure`
 `;
 
 const Image = styled.img`
-  height: 300px;
   width: 100%;
   border-radius: 10px 10px 0 0;
 `;
