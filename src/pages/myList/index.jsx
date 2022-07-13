@@ -13,7 +13,7 @@ const ORDER_RATING = 'rating';
 const ORDER_YEAR = 'year';
 const ORDER_RUNTIME = 'runtime';
 
-export default function Main() {
+export default function MyList() {
   const { patchMovieById } = useMovie();
   const [order, setOrder] = useState(ORDER_ID);
 
@@ -35,88 +35,88 @@ export default function Main() {
   };
 
   return (
-    <Container>
-      <MenuSection>
-        <Button type="button" onClick={() => setOrder(ORDER_ID)}>
-          전 체
-        </Button>
-        <Button type="button" onClick={() => setOrder(ORDER_RATING)}>
-          평점순
-        </Button>
-        <Button type="button" onClick={() => setOrder(ORDER_YEAR)}>
-          최신순
-        </Button>
-        <Button type="button" onClick={() => setOrder(ORDER_RUNTIME)}>
-          러닝타임
-        </Button>
-      </MenuSection>
-      <MovieSection>
-        {movies?.map((movie, movieCount) => {
-          return (
-            <Card
-              key={movie.id}
-              movie={movie}
-              movieCount={movieCount + 1}
-              handleCardClick={handleCardClick}
-              handleLikeClick={handleLikeClick}
-            />
-          );
-        })}
-      </MovieSection>
-      <Modal
-        isOpen={isOpen}
-        isFadeIn={isFadeIn}
-        duration={duration}
-        closeModal={closeModal}
-      >
-        {selectedMovie && (
-          <Detail movie={selectedMovie} closeModal={closeModal} />
-        )}
-      </Modal>
-    </Container>
+    <>
+      <Divider />
+      <Container>
+        <MenuSection>
+          <Button type="button" onClick={() => setOrder(ORDER_ID)}>
+            전 체
+          </Button>
+          <Button type="button" onClick={() => setOrder(ORDER_RATING)}>
+            평점순
+          </Button>
+          <Button type="button" onClick={() => setOrder(ORDER_YEAR)}>
+            최신순
+          </Button>
+          <Button type="button" onClick={() => setOrder(ORDER_RUNTIME)}>
+            러닝타임
+          </Button>
+        </MenuSection>
+        <MovieSection>
+          {movies?.map((movie, movieCount) => {
+            return (
+              <Card
+                key={movie.id}
+                movie={movie}
+                movieCount={movieCount + 1}
+                handleCardClick={handleCardClick}
+                handleLikeClick={handleLikeClick}
+              />
+            );
+          })}
+        </MovieSection>
+        <Modal
+          isOpen={isOpen}
+          isFadeIn={isFadeIn}
+          duration={duration}
+          closeModal={closeModal}
+        >
+          {selectedMovie && (
+            <Detail movie={selectedMovie} closeModal={closeModal} />
+          )}
+        </Modal>
+      </Container>
+    </>
   );
 }
 
 const Container = styled.main`
-  margin: 0 auto;
   max-width: 1200px;
+  margin: auto;
+  padding-top: 2rem;
+`;
+
+const Divider = styled.div`
+  width: 100%;
+  min-width: 350;
+  max-width: 1200px;
+  height: 1px;
+  background-color: #fff;
+  margin: 0 auto;
 `;
 
 const MenuSection = styled.section`
   display: flex;
-  flex-wrap: nowrap;
-  grid-gap: 0.1rem;
-  margin-top: 1rem;
-  padding: 0 0.1rem;
+  gap: 4px;
 `;
 const Button = styled.button`
-  text-align: center;
-  background-color: #e8e8e8;
-  width: 5rem;
-  height: 2rem;
-  font-size: 0.8rem;
-  padding: 0 1rem;
-  border-radius: 5px;
+  background-color: transparent;
+  color: ghostwhite;
+  font-size: 18px;
+  border-radius: 4px;
+  border: #fff solid 1px;
   cursor: pointer;
-  &:first-child {
-    margin-left: auto;
-  }
-  &:last-child {
-    margin-right: auto;
-  }
 `;
 
 const MovieSection = styled.section`
+  padding-top: 3rem;
   display: grid;
   grid-gap: 1rem;
-  margin-top: 1rem;
-  padding: 0 1rem;
-
   @media ${theme.deviceSize.desktop} {
-    grid-template-columns: repeat(5, minmax(150px, auto));
+    grid-template-columns: repeat(5, 1fr);
   }
   @media ${theme.deviceSize.tablet} {
-    grid-template-columns: repeat(3, minmax(200px, auto));
+    grid-template-columns: repeat(3, 1fr);
   }
   @media ${theme.deviceSize.mobile} {
     grid-template-columns: repeat(2, 1fr);

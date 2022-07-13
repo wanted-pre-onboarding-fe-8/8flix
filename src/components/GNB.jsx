@@ -17,18 +17,20 @@ export default function GNB() {
     setKeyword(value);
   };
 
+  const handleClear = () => {
+    setKeyword('');
+  };
+
   return (
     <Wrapper>
       <Navigation>
-        <Section>
-          <RouterLink to="/">
-            <Logo src={LOGO_URL + 'Logo_GNB.png'} />
-          </RouterLink>
-        </Section>
-        <SearchDiv>
-          <Div>
+        <RouterLink to="/">
+          <Logo src={LOGO_URL + 'Logo_GNB.png'} />
+        </RouterLink>
+        <SearchBarContainer>
+          <InputControl>
             <SearchBar>
-              <input
+              <SearchInput
                 placeholder="🔍 영화 검색"
                 onChange={handleChange}
                 value={keyword}
@@ -36,111 +38,100 @@ export default function GNB() {
                 onBlur={() => setIsInputFocused(false)}
               />
             </SearchBar>
-            <Button onClick={() => setKeyword('')}>
-              <FaTrash />
+            <Button onClick={handleClear}>
+              <StyledFaTrash />
             </Button>
-          </Div>
-          <AutoComplete isActive={isInputFocused} />
-        </SearchDiv>
-        <Section>
-          <TabLink to="my-list">즐겨찾기</TabLink>
-        </Section>
+          </InputControl>
+          <AutoCompleteContainer>
+            <AutoComplete isActive={isInputFocused} />
+          </AutoCompleteContainer>
+        </SearchBarContainer>
+        <TabLink to="my-list">즐겨찾기</TabLink>
       </Navigation>
     </Wrapper>
   );
 }
 
-const Wrapper = styled.nav`
-  display: flex;
-  height: 57px;
-  background-color: black;
-  width: 100%;
-  padding: 10px;
+const Wrapper = styled.header`
   position: sticky;
-  top: 0;
-  min-width: 320px;
+  padding: 1rem;
   z-index: 1;
 `;
 
-const Navigation = styled.div`
-  box-sizing: border-box;
-  height: 100%;
+const Navigation = styled.nav`
   width: 100%;
+  min-width: 320px;
   max-width: 1200px;
+  padding: 0 4px;
   margin: 0 auto;
-  display: flex;
-  flex-shrink: 1;
-  justify-content: center;
-  align-items: center;
-  &:first-child {
-    padding-left: 0.5rem;
-  }
-  &:last-child {
-    padding-right: 1rem;
-  }
+  display: grid;
+  grid-template-columns: auto 400px auto;
   @media ${theme.deviceSize.mobile} {
-    justify-content: space-between;
-    padding: 0;
-    gap: 15px;
-  }
-`;
-
-const Section = styled.div`
-  flex: 1 0 127px;
-  @media ${theme.deviceSize.mobile} {
-    flex: 0 0 80px;
+    grid-template:
+      [row1-start] 'logo page' [row1-end]
+      [row2-start] 'search search' [row2-end] / 1fr 1fr;
+    & > *:nth-child(2) {
+      order: 3;
+    }
+    padding: 1rem;
   }
 `;
 
 const Logo = styled.img`
-  height: 2rem;
+  height: 30px;
+  align-self: center;
   &:hover {
     cursor: pointer;
   }
 `;
 
-const TabLink = styled(RouterLink)`
-  display: block;
-  width: fit-content;
-  height: 100%;
-  color: white;
-  text-decoration: none;
-  text-align: right;
-  float: right;
-  @media ${theme.deviceSize.mobile} {
-    width: 60px;
-  }
-`;
-
-const SearchBar = styled(Section).attrs({ as: 'form' })`
-  & > input {
-    height: 30px;
-    padding-left: 10px;
-    width: -webkit-fill-available;
-    @media ${theme.deviceSize.mobile} {
-      padding-left: 4px;
-      width: 175px;
-    }
-  }
-`;
-
-const SearchDiv = styled.div`
-  height: inherit;
-  padding-top: 3px;
-  width: 400px;
-  @media ${theme.deviceSize.mobile} {
-    width: 200px;
-  }
-`;
-
-const Div = styled.div`
+const SearchBarContainer = styled.div`
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
+  align-self: center;
 `;
-
+const InputControl = styled.div`
+  display: flex;
+  align-items: center;
+  width: 400px;
+  height: 30px;
+  @media ${theme.deviceSize.mobile} {
+    width: 200%;
+    margin-top: 4px;
+  }
+`;
+const SearchBar = styled.form`
+  width: 100%;
+  height: 100%;
+`;
+const SearchInput = styled.input`
+  width: 100%;
+  height: 100%;
+  background-color: transparent;
+  color: #fff;
+`;
 const Button = styled.button`
+  box-sizing: border-box;
   outline: 0;
   border: 0;
-  background-color: #fff;
-  cursor: pointer;
+  height: 30px;
+  background-color: transparent;
+`;
+const StyledFaTrash = styled(FaTrash)`
+  color: #fff;
+`;
+
+const AutoCompleteContainer = styled.section`
+  position: relative;
+  width: 100%;
+`;
+
+const TabLink = styled(RouterLink)`
+  text-decoration: none;
+  color: #fff;
+  display: flex;
+  justify-content: end;
+  align-items: center;
+  height: 30px;
+  font-size: 14px;
 `;

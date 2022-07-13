@@ -1,16 +1,19 @@
 const breakpoints = {
-  mobile: '767px',
+  mobile: {
+    min: '320px',
+    max: '599px',
+  },
   tablet: {
-    min: '768px',
+    min: '600px',
     max: '1023px',
   },
-  desktop: '1024px',
+  pc: '1024px',
 };
 
 export const theme = {
   deviceSize: {
-    mobile: `screen and (max-width: ${breakpoints.mobile})`,
+    mobile: `screen and (min-width: ${breakpoints.mobile.min}) and (max-width: ${breakpoints.mobile.max})`,
     tablet: `screen and (min-width: ${breakpoints.tablet.min}) and (max-width: ${breakpoints.tablet.max})`,
-    desktop: `screen and (min-width: ${breakpoints.desktop})`,
+    pc: `screen and (min-width: ${breakpoints.pc})`,
   },
 };

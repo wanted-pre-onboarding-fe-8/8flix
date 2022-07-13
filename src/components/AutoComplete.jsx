@@ -46,15 +46,18 @@ export function AutoComplete({ isActive }) {
 
 const AutoCompleteDiv = styled.div`
   margin: -1px;
+  position: absolute;
+  width: 100%;
   @media ${theme.deviceSize.mobile} {
-    width: 202px;
+    width: 200%;
   }
 `;
 
 const Ul = styled.ul`
   max-height: 200px;
   overflow-y: scroll;
-  background-color: #fff;
+  background-color: #141414;
+  color: #fff;
   list-style: none;
   padding-left: 0px;
   margin: 0px;

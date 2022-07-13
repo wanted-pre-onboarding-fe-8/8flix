@@ -1,0 +1,27 @@
+const genreEnglishToKoreanMapper = {
+  Action: '액션',
+  Adventure: '모험',
+  Animation: '애니메이션',
+  Biography: '위인전',
+  Comedy: '코미디',
+  Crime: '범죄',
+  Documentary: '다큐멘터리',
+  Drama: '드라마',
+  Family: '가족',
+  Fantasy: '판타지',
+  History: '역사',
+  Horror: '호러',
+  Music: '음악',
+  Mystery: '미스테리',
+  News: '뉴스',
+  'Reality-TV': '리얼리티 티비',
+  Romance: '로맨스',
+  'Sci-Fi': 'SF판타지',
+  Sport: '스포츠',
+  'Talk-Show': '토크쇼',
+  Thriller: '스릴러',
+  War: '전쟁',
+  Western: '서부',
+};
+
+export default genreEnglishToKoreanMapper;

@@ -4,10 +4,11 @@ import styled from 'styled-components';
 import { theme } from '../../utils/constants/theme';
 import { IoClose } from 'react-icons/io5';
 import { AiFillStar } from 'react-icons/ai';
+import { genresToKorean } from '../../utils/helpers';
 
 export default function Detail({ movie, closeModal }) {
   const [isMore, setIsMore] = useState(movie.description_full.length > 200);
-
+  const koreanGenres = genresToKorean(movie.genres);
   return (
     <Wrapper>
       <Figure>
@@ -17,7 +18,7 @@ export default function Detail({ movie, closeModal }) {
         <Image src={movie.background_image_original} alt="background_image" />
       </Figure>
       <Contents>
-        <Title>{movie.title}</Title>
+        <Title>{movie.title_long}</Title>
         <InfoBox>
           <Year>{movie.year}</Year>
           <RunTime>{movie.runtime}분</RunTime>
@@ -27,7 +28,7 @@ export default function Detail({ movie, closeModal }) {
           </RatingWrapper>
         </InfoBox>
         <Genres>
-          {movie.genres.map((genre, index) => (
+          {koreanGenres.map((genre, index) => (
             <Genre key={index}>{genre}</Genre>
           ))}
         </Genres>
