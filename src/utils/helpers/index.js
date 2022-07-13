@@ -1,3 +1,5 @@
+import { genreEnglishToKoreanMapper as mapper } from '../constants';
+
 export function cutString(str, maxLength) {
   if (maxLength <= str.length) {
     str = str.substring(0, maxLength - 3);
@@ -22,4 +24,9 @@ export function getTimeStringByMinute(minutes) {
     timeString += `${minute}분`;
   }
   return timeString;
+}
+
+export function genresToKorean(genres) {
+  const koreanGenres = genres.map((genre) => mapper[genre]);
+  return koreanGenres;
 }
