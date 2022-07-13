@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { Link as RouterLink } from 'react-router-dom';
 import styled from 'styled-components';
 import { LOGO_URL } from '../utils/constants';
@@ -7,15 +7,22 @@ import { useRecoilState } from 'recoil';
 import { keywordState } from '../recoil';
 import { AutoComplete } from './AutoComplete';
 import { FaTrash } from 'react-icons/fa';
+import { debounce } from '../utils/helpers';
 
 export default function GNB() {
   const [keyword, setKeyword] = useRecoilState(keywordState);
   const [isInputFocused, setIsInputFocused] = useState(false);
 
-  const handleChange = (event) => {
+  const debounceHandler = debounce((event) => {
     const { value } = event.target;
     setKeyword(value);
-  };
+    console.log('🎉 호출 🎉');
+  }, 300);
+
+  const inputRef = useRef(null);
+  useEffect(() => {
+    inputRef.current.value = keyword;
+  }, [keyword]);
 
   const handleClear = () => {
     setKeyword('');
@@ -31,9 +38,9 @@ export default function GNB() {
           <InputControl>
             <SearchBar>
               <SearchInput
+                ref={inputRef}
                 placeholder="🔍 영화 검색"
-                onChange={handleChange}
-                value={keyword}
+                onKeyUp={debounceHandler}
                 onFocus={() => setIsInputFocused(true)}
                 onBlur={() => setIsInputFocused(false)}
               />
