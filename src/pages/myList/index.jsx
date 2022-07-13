@@ -107,6 +107,7 @@ const Button = styled.button`
   border: #fff solid 1px;
   cursor: pointer;
 `;
+
 const MovieSection = styled.section`
   padding-top: 3rem;
   display: grid;
