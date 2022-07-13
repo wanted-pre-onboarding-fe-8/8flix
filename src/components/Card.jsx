@@ -31,18 +31,42 @@ const CardWrapper = styled.div`
   display: flex;
   flex-direction: column;
   position: relative;
+  > :nth-child(1) {
+    z-index: 2;
+  }
+  > :nth-child(2) {
+    z-index: 3;
+  }
   @media ${theme.deviceSize.pc} {
     &:hover {
-      > :nth-child(1) {
-        z-index: 2;
-      }
       > :nth-child(2) {
         visibility: visible;
-        z-index: 3;
       }
       > * {
         position: absolute;
         transform: scale(1.2);
+        cursor: pointer;
+      }
+    }
+  }
+  @media ${theme.deviceSize.tablet} {
+    &:hover {
+      > :nth-child(2) {
+        visibility: visible;
+      }
+      > * {
+        position: absolute;
+        cursor: pointer;
+      }
+    }
+  }
+  @media ${theme.deviceSize.mobile} {
+    &:hover {
+      > :nth-child(2) {
+        visibility: visible;
+      }
+      > * {
+        position: absolute;
         cursor: pointer;
       }
     }
@@ -98,40 +122,3 @@ const Button = styled.button`
   font-size: 24px;
   cursor: pointer;
 `;
-
-// const Figure = styled.figure`
-//   flex-grow: 1;
-//   margin: 0;
-//   overflow: hidden;
-
-//   @media ${theme.deviceSize.tablet} {
-//     &:hover {
-//       > :nth-child(1) {
-//         display: block;
-//         z-index: 3;
-//       }
-//       > :nth-child(2) {
-//         z-index: 2;
-//       }
-//       > * {
-//         position: absolute;
-//         cursor: pointer;
-//       }
-//     }
-//   }
-//   @media ${theme.deviceSize.mobile} {
-//     &:hover {
-//       > :nth-child(1) {
-//         display: block;
-//         z-index: 3;
-//       }
-//       > :nth-child(2) {
-//         z-index: 2;
-//       }
-//       > * {
-//         position: absolute;
-//         cursor: pointer;
-//       }
-//     }
-//   }
-// `;
