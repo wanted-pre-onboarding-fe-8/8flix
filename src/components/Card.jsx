@@ -31,6 +31,7 @@ const CardWrapper = styled.div`
   display: flex;
   flex-direction: column;
   position: relative;
+  z-index: 0;
   > :nth-child(1) {
     z-index: 2;
   }
