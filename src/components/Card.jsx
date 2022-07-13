@@ -48,7 +48,7 @@ const CardWrapper = styled.div`
       }
       > * {
         position: absolute;
-        transform: scale(1.2);
+        transform: scale(1.15);
         cursor: pointer;
       }
     }
@@ -87,20 +87,21 @@ const ContentOverlay = styled.div`
   position: absolute;
   bottom: 0;
   width: 100%;
-  height: 40%;
+  height: 100%;
   background-color: rgba(0, 0, 0, 0.5);
   padding: 16px;
-  border-radius: 0 0 24px 24px;
+  border-radius: 24px;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: end;
+  gap: 16px;
   align-items: center;
   visibility: hidden;
 `;
 const Title = styled.h1`
   width: 100%;
   margin: 0;
-  margin-top: 6px;
+  margin-top: 90%;
   font-size: 18px;
   font-weight: 600;
   white-space: nowrap;
